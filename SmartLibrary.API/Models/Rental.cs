@@ -6,11 +6,12 @@
         {
 
         }
-        public Rental(int id, int bookId, int userId)
+        public Rental(int id, int bookId, int userId, DateTime rentDate)
         {
             Id = id;
             BookId = bookId;
             UserId = userId;
+            RentDate = rentDate;
         }
         public int Id { get; set; }
         public int BookId { get; set; }
