@@ -32,6 +32,8 @@ namespace SmartLibrary.API.Data
         public Rental[] GetAllRentals()
         {
             IQueryable<Rental> query = _context.Rentals;
+            query = query.Include(r => r.Book);
+            query = query.Include(r => r.User);
             query = query.AsNoTracking().OrderBy(r => r.Id);
             return query.ToArray();
         }
@@ -39,6 +41,8 @@ namespace SmartLibrary.API.Data
         public Rental GetRental(int rentalId)
         {
             IQueryable<Rental> query = _context.Rentals;
+            query = query.Include(r => r.Book);
+            query = query.Include(r => r.User);
             query = query.AsNoTracking()
                 .OrderBy(r => r.Id)
                 .Where(rental => rental.Id == rentalId);
