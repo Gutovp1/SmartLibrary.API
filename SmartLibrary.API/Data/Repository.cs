@@ -57,5 +57,33 @@ namespace SmartLibrary.API.Data
             IQueryable<Publisher> query = _context.Publishers.AsNoTracking().OrderBy(p=>p.Id).Where(p => p.Id == id);
             return query.FirstOrDefault();
          }
+
+        public Book[] GetAllBooks()
+        {
+            IQueryable<Book> query = _context.Books;
+            query = query.AsNoTracking().OrderBy(b=>b.Id);
+            return query.ToArray();
+        }
+
+        public Book GetBook(int id)
+        {
+            IQueryable<Book> query = _context.Books;
+            query = query.AsNoTracking().OrderBy(b => b.Id).Where(b=>b.Id==id);
+            return query.FirstOrDefault();
+        }
+
+        public User[] GetAllUsers()
+        {
+            IQueryable<User> query = _context.Users;
+            query = query.AsNoTracking().OrderBy(u => u.Id);
+            return query.ToArray();
+        }
+
+        public User GetUser(int id)
+        {
+            IQueryable<User> query = _context.Users;
+            query = query.AsNoTracking().OrderBy(u => u.Id).Where(u => u.Id == id);
+            return query.FirstOrDefault();
+        }
     }
 }

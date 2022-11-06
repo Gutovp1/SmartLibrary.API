@@ -12,5 +12,9 @@ namespace SmartLibrary.API.Data
         Rental GetRental(int id);
         Publisher[] GetAllPublishers();
         Publisher GetPublisher(int id);
+        Book[] GetAllBooks();
+        Book GetBook(int id);
+        User[] GetAllUsers();
+        User GetUser(int id);
     }
 }
