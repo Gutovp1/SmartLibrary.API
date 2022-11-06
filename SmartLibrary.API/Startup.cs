@@ -18,7 +18,9 @@ namespace SmartLibrary.API
 
             services.AddScoped<IRepository, Repository>();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(opt =>opt.SerializerSettings.ReferenceLoopHandling = 
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();

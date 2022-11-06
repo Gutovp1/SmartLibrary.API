@@ -21,6 +21,6 @@
         public string City { get; set; }    
         public string Email { get; set; }
 
-        //public IEnumerable<Book> Books { get; set; }
+        public IEnumerable<Book> Books { get; set; }
     }
 }
