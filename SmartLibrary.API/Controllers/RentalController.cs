@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SmartLibrary.API.Data;
 using SmartLibrary.API.Models;
 
@@ -11,9 +12,12 @@ namespace SmartLibrary.API.Controllers
     public class RentalController : ControllerBase
     {
         private readonly SmartContext context;
-        public RentalController(SmartContext  context)
+
+        private readonly IRepository repository;
+        public RentalController(SmartContext  context, IRepository repository)
         {
             this.context = context;
+            this.repository = repository;
         }
         [HttpGet]
         public IActionResult Get()
@@ -34,21 +38,56 @@ namespace SmartLibrary.API.Controllers
         [HttpPost]
         public IActionResult Post(Rental rental)
         {
-            return Ok(rental);
+            this.repository.Add(rental);
+            if (this.repository.SaveChanges())
+            {
+                return Ok(rental);
+            }
+            return BadRequest("Rental not found");
         }
 
         // PUT api/<RentalController>/5
         [HttpPut("{id}")]
         public IActionResult Post(int id, Rental rental)
         {
-            return Ok(rental);
+            var rent = this.context.Rentals.AsNoTracking().FirstOrDefault(r => r.Id == id);
+            if (rent == null) return BadRequest("Rental not found");
+
+            this.repository.Update(rental);
+            if (this.repository.SaveChanges())
+            {
+                return Ok(rental);
+            }
+            return BadRequest("Rental not found");
+        }
+        // PATCH api/<RentalController>/5
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, Rental rental)
+        {
+            var rent = this.context.Rentals.AsNoTracking().FirstOrDefault(r => r.Id == id);
+            if (rent == null) return BadRequest("Rental not found");
+
+            this.repository.Update(rental);
+            if (this.repository.SaveChanges())
+            {
+                return Ok(rental);
+            }
+            return BadRequest("Rental not found");
         }
 
         // DELETE api/<RentalController>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-             return Ok();
+            var rent = this.context.Rentals.FirstOrDefault(r => r.Id == id);
+            if (rent == null) return BadRequest("Rental not found");
+
+            this.repository.Delete(rent);
+            if (this.repository.SaveChanges())
+            {
+                return Ok("Rental deleted");
+            }
+            return BadRequest("Rental not found");
         }
     }
 }

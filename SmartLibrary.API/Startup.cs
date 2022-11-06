@@ -14,7 +14,10 @@ namespace SmartLibrary.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SmartContext>(context => context.UseSqlite(Configuration.GetConnectionString("Default"))); 
+            services.AddDbContext<SmartContext>(context => context.UseSqlite(Configuration.GetConnectionString("Default")));
+
+            services.AddScoped<IRepository, Repository>();
+
             services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
