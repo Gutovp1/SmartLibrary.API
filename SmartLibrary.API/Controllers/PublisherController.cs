@@ -11,25 +11,23 @@ namespace SmartLibrary.API.Controllers
     [ApiController]
     public class PublisherController : ControllerBase
     {
-        private readonly SmartContext context;
 
         private readonly IRepository repository;
-        public PublisherController(SmartContext  context, IRepository repository)
+        public PublisherController( IRepository repository)
         {
-            this.context = context;
             this.repository = repository;
         }
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(this.context.Publishers);
+            return Ok(this.repository.GetAllPublishers());
         }
 
         //// GET api/<PublisherController>/5
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var publisher = this.context.Publishers.FirstOrDefault(a => a.Id == id);
+            var publisher = this.repository.GetPublisher(id);
             if(publisher == null) return BadRequest("Publisher not found");
             return Ok(publisher);
         }
@@ -50,7 +48,7 @@ namespace SmartLibrary.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Post(int id, Publisher publisher)
         {
-            var rent = this.context.Publishers.AsNoTracking().FirstOrDefault(r => r.Id == id);
+            var rent = this.repository.GetPublisher(id);
             if (rent == null) return BadRequest("Publisher not found");
 
             this.repository.Update(publisher);
@@ -64,7 +62,7 @@ namespace SmartLibrary.API.Controllers
         [HttpPatch("{id}")]
         public IActionResult Patch(int id, Publisher publisher)
         {
-            var rent = this.context.Publishers.AsNoTracking().FirstOrDefault(r => r.Id == id);
+            var rent = this.repository.GetPublisher(id);
             if (rent == null) return BadRequest("Publisher not found");
 
             this.repository.Update(publisher);
@@ -79,7 +77,7 @@ namespace SmartLibrary.API.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var rent = this.context.Publishers.FirstOrDefault(r => r.Id == id);
+            var rent = this.repository.GetPublisher(id);
             if (rent == null) return BadRequest("Publisher not found");
 
             this.repository.Delete(rent);
