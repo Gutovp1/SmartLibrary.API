@@ -32,7 +32,7 @@ namespace SmartLibrary.API.Data
         public async Task<Rental[]> GetAllRentalsAsync()
         {
             IQueryable<Rental> query = _context.Rentals;
-            query = query.Include(r => r.Book);
+            query = query.Include(r => r.Book);           
             query = query.Include(r => r.User);
             query = query.AsNoTracking().OrderBy(r => r.Id);
             return await query.ToArrayAsync();
@@ -65,6 +65,7 @@ namespace SmartLibrary.API.Data
         public async Task<Book[]> GetAllBooksAsync()
         {
             IQueryable<Book> query = _context.Books;
+            query = query.Include(b => b.Publisher);
             query = query.AsNoTracking().OrderBy(b=>b.Id);
             return await query.ToArrayAsync();
         }
@@ -72,6 +73,7 @@ namespace SmartLibrary.API.Data
         public Book GetBook(int id)
         {
             IQueryable<Book> query = _context.Books;
+            query = query.Include(b => b.Publisher);
             query = query.AsNoTracking().OrderBy(b => b.Id).Where(b=>b.Id==id);
             return query.FirstOrDefault();
         }

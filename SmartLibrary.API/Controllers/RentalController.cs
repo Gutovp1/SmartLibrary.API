@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartLibrary.API.Data;
+using SmartLibrary.API.Dtos;
 using SmartLibrary.API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,15 +15,18 @@ namespace SmartLibrary.API.Controllers
     {
 
         private readonly IRepository repository;
-        public RentalController(IRepository repository)
+        private readonly IMapper mapper;
+
+        public RentalController(IRepository repository, IMapper mapper)
         {
             this.repository = repository;
+            this.mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var result = await this.repository.GetAllRentalsAsync();
-            return Ok(result);
+            return Ok(this.mapper.Map<IEnumerable<RentalDto>>(result));
         }
 
         //// GET api/<RentalController>/5
