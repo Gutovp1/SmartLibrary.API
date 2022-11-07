@@ -16,6 +16,9 @@ namespace SmartLibrary.API.Data
             builder.Entity<Rental>()
                 .HasKey(rent=> new {rent.BookId, rent.UserId});
 
+            builder.Entity<Book>()
+                .HasKey(book => new { book.PublisherId });
+
             builder.Entity<User>()
                 .HasData(new List<User>()
                 {
@@ -37,15 +40,15 @@ namespace SmartLibrary.API.Data
             builder.Entity<Book>()
                 .HasData(new List<Book>()
                 {
-                    new Book(1,"D. Casmurro",1,"Machado de Assis",1888),
-                    new Book(2,"Capitu",1,"Machado de Assis",1888),
-                    new Book(3,"Memorias Postumas BC",1,"Machado de Assis",1888),
-                    new Book(4,"Sagarana",2,"Joao Guimaraes Rosa",1988),
-                    new Book(5,"Manoelzao",2,"Joao Guimaraes Rosa",1988),
-                    new Book(6,"Grande Sertao: Veredas",2,"Joao Guimaraes Rosa",1988),
-                    new Book(7,"O Alquimista",3,"Paulo Coelho",1998),
-                    new Book(8,"O Mensageiro",3,"Paulo Coelho",1998),
-                    new Book(9,"O Cortiço",4,"Aloisio Azevedo",1888),
+                    new Book(1,"D. Casmurro","Machado de Assis",1,10,1888),
+                    new Book(2,"Capitu","Machado de Assis",1,10,1888),
+                    new Book(3,"Memorias Postumas BC","Machado de Assis",1,10,1888),
+                    new Book(4,"Sagarana","Joao Guimaraes Rosa",2,10,1988),
+                    new Book(5,"Manoelzao","Joao Guimaraes Rosa",2,10,1988),
+                    new Book(6,"Grande Sertao: Veredas","Joao Guimaraes Rosa",2,10,1988),
+                    new Book(7,"O Alquimista","Paulo Coelho",3,10,1998),
+                    new Book(8,"O Mensageiro","Paulo Coelho",3,10,1998),
+                    new Book(9,"O Cortiço","Aloisio Azevedo",4,10,1888),
                 });
             builder.Entity<Rental>()
                 .HasData(new List<Rental>() { 

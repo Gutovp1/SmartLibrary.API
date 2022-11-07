@@ -8,12 +8,13 @@
         }
 
 
-        public Book(int id, string title, int publisherId, string author,  int year)
+        public Book(int id, string title, string author, int publisherId, int quantity, int year)
         {
             Id = id;
             Title = title;
-            PublisherId = publisherId;
             Author = author;
+            PublisherId = publisherId;
+            Quantity = quantity;
             Year = year;
         }
 
@@ -21,7 +22,9 @@
         public string Title { get; set; }
         public int PublisherId { get; set; }
 
-        public Publisher Publisher { get; set; }
+        public int Quantity { get; set; }
+
+        public Publisher? Publisher { get; set; }
         public string Author { get; set; }
 
         public int Year { get; set; }
