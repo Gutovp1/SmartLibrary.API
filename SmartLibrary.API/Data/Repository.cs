@@ -29,13 +29,13 @@ namespace SmartLibrary.API.Data
             return (_context.SaveChanges() > 0);
         }
 
-        public Rental[] GetAllRentals()
+        public async Task<Rental[]> GetAllRentalsAsync()
         {
             IQueryable<Rental> query = _context.Rentals;
             query = query.Include(r => r.Book);
             query = query.Include(r => r.User);
             query = query.AsNoTracking().OrderBy(r => r.Id);
-            return query.ToArray();
+            return await query.ToArrayAsync();
         }
 
         public Rental GetRental(int rentalId)
@@ -49,11 +49,11 @@ namespace SmartLibrary.API.Data
             return query.FirstOrDefault();
         }
 
-        public Publisher[] GetAllPublishers()
+        public async Task<Publisher[]> GetAllPublishersAsync()
         {
             IQueryable<Publisher> query = _context.Publishers;
             query = query.AsNoTracking().OrderBy(p=>p.Id);
-            return query.ToArray();
+            return await query.ToArrayAsync();
         }
 
         public Publisher GetPublisher(int id)
@@ -62,11 +62,11 @@ namespace SmartLibrary.API.Data
             return query.FirstOrDefault();
          }
 
-        public Book[] GetAllBooks()
+        public async Task<Book[]> GetAllBooksAsync()
         {
             IQueryable<Book> query = _context.Books;
             query = query.AsNoTracking().OrderBy(b=>b.Id);
-            return query.ToArray();
+            return await query.ToArrayAsync();
         }
 
         public Book GetBook(int id)
@@ -76,11 +76,11 @@ namespace SmartLibrary.API.Data
             return query.FirstOrDefault();
         }
 
-        public User[] GetAllUsers()
+        public async Task<User[]> GetAllUsersAsync()
         {
             IQueryable<User> query = _context.Users;
             query = query.AsNoTracking().OrderBy(u => u.Id);
-            return query.ToArray();
+            return await query.ToArrayAsync();
         }
 
         public User GetUser(int id)

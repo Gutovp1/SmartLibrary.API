@@ -18,9 +18,9 @@ namespace SmartLibrary.API.Controllers
             this.repository = repository;
         }
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(this.repository.GetAllPublishers());
+            return Ok(await this.repository.GetAllPublishersAsync());
         }
 
         //// GET api/<PublisherController>/5

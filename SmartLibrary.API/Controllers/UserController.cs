@@ -18,9 +18,9 @@ namespace SmartLibrary.API.Controllers
             this.repository = repository;
         }
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var result = this.repository.GetAllUsers();
+            var result = await this.repository.GetAllUsersAsync();
             return Ok(result);
         }
 
