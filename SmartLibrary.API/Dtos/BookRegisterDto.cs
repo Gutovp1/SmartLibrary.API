@@ -2,14 +2,16 @@
 
 namespace SmartLibrary.API.Dtos
 {
-    public class BookDto
+    public class BookRegisterDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public int PublisherId { get; set; }
 
-        public string PublisherName { get; set; }
+        public Publisher Publisher { get; set; }
         public string Author { get; set; }
 
         public int Year { get; set; }
+
     }
 }

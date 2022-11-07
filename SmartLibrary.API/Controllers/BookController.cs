@@ -35,46 +35,51 @@ namespace SmartLibrary.API.Controllers
         {
             var book = this.repository.GetBook(id);
             if(book == null) return BadRequest("Book not found");
-            return Ok(book);
+            var bookDto = this.mapper.Map<BookDto>(book);
+            return Ok(bookDto);
         }
 
         // POST api/<BookController>
         [HttpPost]
-        public IActionResult Post(Book book)
+        public IActionResult Post(BookRegisterDto model)
         {
+            var book = this.mapper.Map<Book>(model);
             this.repository.Add(book);
             if (this.repository.SaveChanges())
             {
-                return Ok(book);
+                //return Ok(book);
+                return Created($"/api/book/{model.Id}", this.mapper.Map<BookDto>(book));
             }
             return BadRequest("Book not found");
         }
 
         // PUT api/<BookController>/5
         [HttpPut("{id}")]
-        public IActionResult Post(int id, Book book)
+        public IActionResult Post(int id, BookDto model)
         {
             var bk = this.repository.GetBook(id);
             if (bk == null) return BadRequest("Book not found");
 
-            this.repository.Update(book);
+            this.mapper.Map(model, bk);
+            this.repository.Update(bk);
             if (this.repository.SaveChanges())
             {
-                return Ok(book);
+                return Created($"/api/book/{model.Id}", this.mapper.Map<BookDto>(bk));
             }
             return BadRequest("Book not found");
         }
         // PATCH api/<BookController>/5
         [HttpPatch("{id}")]
-        public IActionResult Patch(int id, Book book)
+        public IActionResult Patch(int id, BookRegisterDto model)
         {
             var bk = this.repository.GetBook(id);
             if (bk == null) return BadRequest("Book not found");
 
-            this.repository.Update(book);
+            this.mapper.Map(model, bk);
+            this.repository.Update(bk);
             if (this.repository.SaveChanges())
             {
-                return Ok(book);
+                return Created($"/api/book/{model.Id}", this.mapper.Map<BookDto>(bk));
             }
             return BadRequest("Book not found");
         }

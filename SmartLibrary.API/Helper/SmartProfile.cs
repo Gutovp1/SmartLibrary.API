@@ -13,11 +13,14 @@ namespace SmartLibrary.API.Helper
                 dest => dest.BookTitle,
                 opt => opt.MapFrom(src => $"{src.Book.Title}")
                 );
+
             CreateMap<Book, BookDto>()
                 .ForMember(
                 dest => dest.PublisherName,
                 opt => opt.MapFrom(src => $"{src.Publisher.Name}")
                 );
+            CreateMap<BookDto, Book>();
+            CreateMap<Book, BookRegisterDto>().ReverseMap();
         }
     }
 }

@@ -35,7 +35,8 @@ namespace SmartLibrary.API.Controllers
         {
             var rental = this.repository.GetRental(id);
             if(rental == null) return BadRequest("Rental not found");
-            return Ok(rental);
+            var rentalDto = this.mapper.Map<RentalDto>(rental);
+            return Ok(rentalDto);
         }
 
         // POST api/<RentalController>
