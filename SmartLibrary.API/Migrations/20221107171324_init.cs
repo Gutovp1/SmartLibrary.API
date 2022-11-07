@@ -47,6 +47,7 @@ namespace SmartLibrary.API.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     PublisherId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
                     Author = table.Column<string>(type: "TEXT", nullable: false),
                     Year = table.Column<int>(type: "INTEGER", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: true)
@@ -146,83 +147,83 @@ namespace SmartLibrary.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 1, "Machado de Assis", 1, "D. Casmurro", null, 1888 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 1, "Machado de Assis", 1, 10, "D. Casmurro", null, 1888 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 2, "Machado de Assis", 1, "Capitu", null, 1888 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 2, "Machado de Assis", 1, 10, "Capitu", null, 1888 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 3, "Machado de Assis", 1, "Memorias Postumas BC", null, 1888 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 3, "Machado de Assis", 1, 10, "Memorias Postumas BC", null, 1888 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 4, "Joao Guimaraes Rosa", 2, "Sagarana", null, 1988 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 4, "Joao Guimaraes Rosa", 2, 10, "Sagarana", null, 1988 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 5, "Joao Guimaraes Rosa", 2, "Manoelzao", null, 1988 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 5, "Joao Guimaraes Rosa", 2, 10, "Manoelzao", null, 1988 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 6, "Joao Guimaraes Rosa", 2, "Grande Sertao: Veredas", null, 1988 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 6, "Joao Guimaraes Rosa", 2, 10, "Grande Sertao: Veredas", null, 1988 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 7, "Paulo Coelho", 3, "O Alquimista", null, 1998 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 7, "Paulo Coelho", 3, 10, "O Alquimista", null, 1998 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 8, "Paulo Coelho", 3, "O Mensageiro", null, 1998 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 8, "Paulo Coelho", 3, 10, "O Mensageiro", null, 1998 });
 
             migrationBuilder.InsertData(
                 table: "Books",
-                columns: new[] { "Id", "Author", "PublisherId", "Title", "UserId", "Year" },
-                values: new object[] { 9, "Aloisio Azevedo", 4, "O Cortiço", null, 1888 });
+                columns: new[] { "Id", "Author", "PublisherId", "Quantity", "Title", "UserId", "Year" },
+                values: new object[] { 9, "Aloisio Azevedo", 4, 10, "O Cortiço", null, 1888 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 1, 1, 4, new DateTime(2022, 11, 5, 18, 58, 7, 113, DateTimeKind.Local).AddTicks(6459), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 1, 1, 4, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(630), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 1, 4, 2, new DateTime(2022, 11, 5, 18, 58, 7, 113, DateTimeKind.Local).AddTicks(6455), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 1, 4, 2, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(627), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 2, 2, 1, new DateTime(2022, 11, 5, 18, 58, 7, 113, DateTimeKind.Local).AddTicks(6433), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 2, 2, 1, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(613), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 3, 3, 5, new DateTime(2022, 11, 5, 18, 58, 7, 113, DateTimeKind.Local).AddTicks(6460), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 3, 3, 5, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(631), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 4, 1, 3, new DateTime(2022, 11, 5, 18, 58, 7, 113, DateTimeKind.Local).AddTicks(6457), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 4, 1, 3, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(628), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 5, 2, 6, new DateTime(2022, 11, 5, 18, 58, 7, 113, DateTimeKind.Local).AddTicks(6464), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 5, 2, 6, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(633), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 5, 4, 7, new DateTime(2022, 11, 5, 18, 58, 7, 113, DateTimeKind.Local).AddTicks(6465), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 5, 4, 7, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(634), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_PublisherId",

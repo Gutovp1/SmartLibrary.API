@@ -16,8 +16,8 @@ namespace SmartLibrary.API.Data
             builder.Entity<Rental>()
                 .HasKey(rent=> new {rent.BookId, rent.UserId});
 
-            builder.Entity<Book>()
-                .HasKey(book => new { book.PublisherId });
+            //builder.Entity<Book>()
+            //    .HasKey(book => new { book.PublisherId});
 
             builder.Entity<User>()
                 .HasData(new List<User>()

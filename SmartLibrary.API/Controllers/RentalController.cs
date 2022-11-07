@@ -41,41 +41,45 @@ namespace SmartLibrary.API.Controllers
 
         // POST api/<RentalController>
         [HttpPost]
-        public IActionResult Post(Rental rental)
+        public IActionResult Post(RentalRegisterDto model)
         {
+            var rental = this.mapper.Map<Rental>(model);
+
             this.repository.Add(rental);
             if (this.repository.SaveChanges())
             {
-                return Ok(rental);
+                return Created($"/api/rental/{model.Id}", this.mapper.Map<RentalDto>(rental));
             }
             return BadRequest("Rental not found");
         }
 
         // PUT api/<RentalController>/5
         [HttpPut("{id}")]
-        public IActionResult Post(int id, Rental rental)
+        public IActionResult Post(int id, RentalRegisterDto model)
         {
-            var rent = this.repository.GetRental(id);
-            if (rent == null) return BadRequest("Rental not found");
+            var rental = this.repository.GetRental(id);
+            if (rental == null) return BadRequest("Rental not found");
 
+            this.mapper.Map(model, rental);
             this.repository.Update(rental);
             if (this.repository.SaveChanges())
             {
-                return Ok(rental);
+                return Created($"/api/rental/{model.Id}", this.mapper.Map<RentalDto>(rental));
             }
             return BadRequest("Rental not found");
         }
         // PATCH api/<RentalController>/5
         [HttpPatch("{id}")]
-        public IActionResult Patch(int id, Rental rental)
+        public IActionResult Patch(int id, RentalRegisterDto model)
         {
-            var rent = this.repository.GetRental(id);
-            if (rent == null) return BadRequest("Rental not found");
+            var rental = this.repository.GetRental(id);
+            if (rental == null) return BadRequest("Rental not found");
 
+            this.mapper.Map(model, rental);
             this.repository.Update(rental);
             if (this.repository.SaveChanges())
             {
-                return Ok(rental);
+                return Created($"/api/rental/{model.Id}", this.mapper.Map<RentalDto>(rental));
             }
             return BadRequest("Rental not found");
         }

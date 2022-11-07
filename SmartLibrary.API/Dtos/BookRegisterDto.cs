@@ -9,7 +9,6 @@ namespace SmartLibrary.API.Dtos
         public string Author { get; set; }
         public int PublisherId { get; set; }
 
-        //public Publisher Publisher { get; set; }
         public int Quantity { get; set; }
 
         public int Year { get; set; }
