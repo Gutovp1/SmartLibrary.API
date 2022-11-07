@@ -1,4 +1,5 @@
-﻿using SmartLibrary.API.Models;
+﻿using SmartLibrary.API.Helper;
+using SmartLibrary.API.Models;
 
 namespace SmartLibrary.API.Data
 {
@@ -8,13 +9,13 @@ namespace SmartLibrary.API.Data
         void Update<T>(T entity) where T : class;
         void Delete<T>(T entity) where T : class;
         bool SaveChanges();
-        Task<Rental[]> GetAllRentalsAsync();
+        Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams);
         Rental GetRental(int id);
         Task<Publisher[]> GetAllPublishersAsync();
         Publisher GetPublisher(int id);
         Task<Book[]> GetAllBooksAsync();
         Book GetBook(int id);
-        Task<User[]> GetAllUsersAsync();
+        Task<PageList<User>> GetAllUsersAsync(PageParams pageParams);
         User GetUser(int id);
     }
 }

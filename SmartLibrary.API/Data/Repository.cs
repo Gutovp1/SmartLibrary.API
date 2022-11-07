@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartLibrary.API.Helper;
 using SmartLibrary.API.Models;
 
 namespace SmartLibrary.API.Data
@@ -29,13 +30,15 @@ namespace SmartLibrary.API.Data
             return (_context.SaveChanges() > 0);
         }
 
-        public async Task<Rental[]> GetAllRentalsAsync()
+        public async Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams)
         {
             IQueryable<Rental> query = _context.Rentals;
             query = query.Include(r => r.Book);           
             query = query.Include(r => r.User);
             query = query.AsNoTracking().OrderBy(r => r.Id);
-            return await query.ToArrayAsync();
+            //return await query.ToArrayAsync();
+            return await PageList<Rental>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+
         }
 
         public Rental GetRental(int rentalId)
@@ -78,11 +81,12 @@ namespace SmartLibrary.API.Data
             return query.FirstOrDefault();
         }
 
-        public async Task<User[]> GetAllUsersAsync()
+        public async Task<PageList<User>> GetAllUsersAsync(PageParams pageParams)
         {
             IQueryable<User> query = _context.Users;
             query = query.AsNoTracking().OrderBy(u => u.Id);
-            return await query.ToArrayAsync();
+            //return await query.ToListAsync();
+            return await PageList<User>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public User GetUser(int id)

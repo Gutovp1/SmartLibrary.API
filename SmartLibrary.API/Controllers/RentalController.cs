@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartLibrary.API.Data;
 using SmartLibrary.API.Dtos;
+using SmartLibrary.API.Helper;
 using SmartLibrary.API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -23,9 +24,11 @@ namespace SmartLibrary.API.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
-            var result = await this.repository.GetAllRentalsAsync();
+            var result = await this.repository.GetAllRentalsAsync(pageParams);
+            var rentalResult = this.mapper.Map<IEnumerable<RentalDto>>(result);
+            Response.AddPagination(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
             return Ok(this.mapper.Map<IEnumerable<RentalDto>>(result));
         }
 
