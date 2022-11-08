@@ -52,11 +52,12 @@ namespace SmartLibrary.API.Data
             return query.FirstOrDefault();
         }
 
-        public async Task<Publisher[]> GetAllPublishersAsync()
+        public async Task<PageList<Publisher>> GetAllPublishersAsync(PageParams pageParams)
         {
             IQueryable<Publisher> query = _context.Publishers;
             query = query.AsNoTracking().OrderBy(p=>p.Id);
-            return await query.ToArrayAsync();
+            //return await query.ToArrayAsync();
+            return await PageList<Publisher>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public Publisher GetPublisher(int id)
@@ -65,12 +66,13 @@ namespace SmartLibrary.API.Data
             return query.FirstOrDefault();
          }
 
-        public async Task<Book[]> GetAllBooksAsync()
+        public async Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams)
         {
             IQueryable<Book> query = _context.Books;
             query = query.Include(b => b.Publisher);
             query = query.AsNoTracking().OrderBy(b=>b.Id);
-            return await query.ToArrayAsync();
+            //return await query.ToArrayAsync();
+            return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public Book GetBook(int id)

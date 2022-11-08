@@ -19,7 +19,7 @@ namespace SmartLibrary.API.Controllers
             this.repository = repository;
         }
         [HttpGet]
-        public async Task<IActionResult> Get(PageParams pageParams)
+        public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
             var result = await this.repository.GetAllUsersAsync(pageParams);
             return Ok(result);

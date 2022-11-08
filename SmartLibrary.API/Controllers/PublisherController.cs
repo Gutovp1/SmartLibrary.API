@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartLibrary.API.Data;
+using SmartLibrary.API.Helper;
 using SmartLibrary.API.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,9 +19,11 @@ namespace SmartLibrary.API.Controllers
             this.repository = repository;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
-            return Ok(await this.repository.GetAllPublishersAsync());
+            var result = await this.repository.GetAllPublishersAsync(pageParams);
+            Response.AddPagination(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
+            return Ok(result);
         }
 
         //// GET api/<PublisherController>/5

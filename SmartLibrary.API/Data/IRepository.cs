@@ -11,9 +11,9 @@ namespace SmartLibrary.API.Data
         bool SaveChanges();
         Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams);
         Rental GetRental(int id);
-        Task<Publisher[]> GetAllPublishersAsync();
+        Task<PageList<Publisher>> GetAllPublishersAsync(PageParams pageParams);
         Publisher GetPublisher(int id);
-        Task<Book[]> GetAllBooksAsync();
+        Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams);
         Book GetBook(int id);
         Task<PageList<User>> GetAllUsersAsync(PageParams pageParams);
         User GetUser(int id);
