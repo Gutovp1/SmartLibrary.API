@@ -1,33 +1,17 @@
-// This script sets up HTTPS for the application using the ASP.NET Core HTTPS certificate
-const fs = require('fs');
-const spawn = require('child_process').spawn;
+const express = require('express');
+const serveStatic = require('serve-static');
 const path = require('path');
 
-const baseFolder =
-  process.env.APPDATA !== undefined && process.env.APPDATA !== ''
-    ? `${process.env.APPDATA}/ASP.NET/https`
-    : `${process.env.HOME}/.aspnet/https`;
+const app = express();
 
-const certificateArg = process.argv.map(arg => arg.match(/--name=(?<value>.+)/i)).filter(Boolean)[0];
-const certificateName = certificateArg ? certificateArg.groups.value : process.env.npm_package_name;
+//here we are configuring dist to serve app files
+app.use('/', serveStatic(path.join(__dirname, '/dist')));
 
-if (!certificateName) {
-  console.error('Invalid certificate name. Run this script in the context of an npm/yarn script or pass --name=<<app>> explicitly.')
-  process.exit(-1);
-}
+// this * route is to serve project on different page routes except root `/`
+app.get(/.*/, function (req, res) {
+    res.sendFile(path.join(__dirname, '/dist/index.html'));
+});
 
-const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
-const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
-
-if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-  spawn('dotnet', [
-    'dev-certs',
-    'https',
-    '--export-path',
-    certFilePath,
-    '--format',
-    'Pem',
-    '--no-password',
-  ], { stdio: 'inherit', })
-  .on('exit', (code) => process.exit(code));
-}
+const port = process.env.PORT || 8080;
+app.listen(port);
+console.log(`app is listening on port: ${port}`);
