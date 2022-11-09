@@ -14,10 +14,17 @@ namespace SmartLibrary.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //Enable CORS
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+
             services.AddDbContext<SmartContext>(context => context.UseSqlite(Configuration.GetConnectionString("Default")));
 
             services.AddScoped<IRepository, Repository>();
 
+            //JSON Serializer 
             services.AddControllers()
                 .AddNewtonsoftJson(opt =>opt.SerializerSettings.ReferenceLoopHandling = 
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -30,6 +37,9 @@ namespace SmartLibrary.API
         }
         public void Configure(WebApplication app, IWebHostEnvironment environment)
         {
+            //Enable CORS
+            app.UseCors(options=>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
             // Configure the HTTP request pipeline.
             if (environment.IsDevelopment())
             {
