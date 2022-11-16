@@ -48,7 +48,7 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public IActionResult Post(int id, User user)
+        public IActionResult Put(int id, User user)
         {
             var us = this.repository.GetUser(id);
             if (us == null) return BadRequest("User not found");

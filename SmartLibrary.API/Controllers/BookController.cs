@@ -58,7 +58,7 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<BookController>/5
         [HttpPut("{id}")]
-        public IActionResult Post(int id, BookRegisterDto model)
+        public IActionResult Put(int id, BookRegisterDto model)
         {
             var bk = this.repository.GetBook(id);
             if (bk == null) return BadRequest("Book not found");

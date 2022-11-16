@@ -58,7 +58,7 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<RentalController>/5
         [HttpPut("{id}")]
-        public IActionResult Post(int id, RentalRegisterDto model)
+        public IActionResult Put(int id, RentalRegisterDto model)
         {
             var rental = this.repository.GetRental(id);
             if (rental == null) return BadRequest("Rental not found");

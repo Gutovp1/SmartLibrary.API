@@ -49,7 +49,7 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<PublisherController>/5
         [HttpPut("{id}")]
-        public IActionResult Post(int id, Publisher publisher)
+        public IActionResult Put(int id, Publisher publisher)
         {
             var rent = this.repository.GetPublisher(id);
             if (rent == null) return BadRequest("Publisher not found");
