@@ -46,9 +46,9 @@ namespace SmartLibrary.API.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
+                    Author = table.Column<string>(type: "TEXT", nullable: false),
                     PublisherId = table.Column<int>(type: "INTEGER", nullable: false),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    Author = table.Column<string>(type: "TEXT", nullable: false),
                     Year = table.Column<int>(type: "INTEGER", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
@@ -72,15 +72,17 @@ namespace SmartLibrary.API.Migrations
                 name: "Rentals",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     BookId = table.Column<int>(type: "INTEGER", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Id = table.Column<int>(type: "INTEGER", nullable: false),
                     RentDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ReturnDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    ReturnDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ReturnRealDate = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rentals", x => new { x.BookId, x.UserId });
+                    table.PrimaryKey("PK_Rentals", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Rentals_Books_BookId",
                         column: x => x.BookId,
@@ -192,38 +194,38 @@ namespace SmartLibrary.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 1, 1, 4, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(630), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
+                values: new object[] { 1, 2, new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7255), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 1, 4, 2, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(627), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
+                values: new object[] { 2, 1, new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7274), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 4 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 2, 2, 1, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(613), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
+                values: new object[] { 3, 4, new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7275), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 3, 3, 5, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(631), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
+                values: new object[] { 4, 1, new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7276), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 4, 1, 3, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(628), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
+                values: new object[] { 5, 3, new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7277), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 3 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 5, 2, 6, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(633), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
+                values: new object[] { 6, 5, new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7279), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
-                columns: new[] { "BookId", "UserId", "Id", "RentDate", "ReturnDate" },
-                values: new object[] { 5, 4, 7, new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(634), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
+                values: new object[] { 7, 5, new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7280), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 4 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_PublisherId",
@@ -234,6 +236,11 @@ namespace SmartLibrary.API.Migrations
                 name: "IX_Books_UserId",
                 table: "Books",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rentals_BookId",
+                table: "Rentals",
+                column: "BookId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rentals_UserId",

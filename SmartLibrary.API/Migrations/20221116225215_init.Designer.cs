@@ -11,7 +11,7 @@ using SmartLibrary.API.Data;
 namespace SmartLibrary.API.Migrations
 {
     [DbContext(typeof(SmartContext))]
-    [Migration("20221107171324_init")]
+    [Migration("20221116225215_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,13 +184,11 @@ namespace SmartLibrary.API.Migrations
 
             modelBuilder.Entity("SmartLibrary.API.Models.Rental", b =>
                 {
-                    b.Property<int>("BookId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BookId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("RentDate")
@@ -199,7 +197,15 @@ namespace SmartLibrary.API.Migrations
                     b.Property<DateTime>("ReturnDate")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("BookId", "UserId");
+                    b.Property<string>("ReturnRealDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
 
                     b.HasIndex("UserId");
 
@@ -208,59 +214,59 @@ namespace SmartLibrary.API.Migrations
                     b.HasData(
                         new
                         {
-                            BookId = 2,
-                            UserId = 2,
                             Id = 1,
-                            RentDate = new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(613),
-                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            BookId = 2,
+                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7255),
+                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2
                         },
                         new
                         {
-                            BookId = 1,
-                            UserId = 4,
                             Id = 2,
-                            RentDate = new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(627),
-                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            BookId = 4,
-                            UserId = 1,
-                            Id = 3,
-                            RentDate = new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(628),
-                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
                             BookId = 1,
-                            UserId = 1,
+                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7274),
+                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BookId = 4,
+                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7275),
+                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
+                        },
+                        new
+                        {
                             Id = 4,
-                            RentDate = new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(630),
-                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            BookId = 1,
+                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7276),
+                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 1
                         },
                         new
                         {
-                            BookId = 3,
-                            UserId = 3,
                             Id = 5,
-                            RentDate = new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(631),
-                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            BookId = 3,
+                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7277),
+                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3
                         },
                         new
                         {
-                            BookId = 5,
-                            UserId = 2,
                             Id = 6,
-                            RentDate = new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(633),
-                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            BookId = 5,
+                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7279),
+                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2
                         },
                         new
                         {
-                            BookId = 5,
-                            UserId = 4,
                             Id = 7,
-                            RentDate = new DateTime(2022, 11, 7, 14, 13, 24, 606, DateTimeKind.Local).AddTicks(634),
-                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            BookId = 5,
+                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7280),
+                            ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 4
                         });
                 });
 

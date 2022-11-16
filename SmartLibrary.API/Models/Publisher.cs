@@ -1,4 +1,6 @@
-﻿namespace SmartLibrary.API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartLibrary.API.Models
 {
     public class Publisher
     {
@@ -13,6 +15,7 @@
             City = city;
         }
 
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }    
         public string City { get; set; }

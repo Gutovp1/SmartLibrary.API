@@ -9,5 +9,7 @@ namespace SmartLibrary.API.Dtos
         public string UserName { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime ReturnDate { get; set; }
+
+        public string? ReturnRealDate { get; set; }
     }
 }

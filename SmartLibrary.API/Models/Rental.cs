@@ -1,4 +1,6 @@
-﻿namespace SmartLibrary.API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartLibrary.API.Models
 {
     public class Rental
     {
@@ -13,6 +15,7 @@
             UserId = userId;
             RentDate = rentDate;
         }
+        [Key]
         public int Id { get; set; }
         public int BookId { get; set; }
         public Book Book { get; set; }
@@ -20,6 +23,7 @@
         public User User { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime ReturnDate { get; set; }
+        public string? ReturnRealDate { get; set; }
 
     }
 }

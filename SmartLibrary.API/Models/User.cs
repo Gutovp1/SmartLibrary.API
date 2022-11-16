@@ -1,4 +1,6 @@
-﻿namespace SmartLibrary.API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartLibrary.API.Models
 {
     public class User
     {
@@ -15,6 +17,7 @@
             Email = email;
         }
 
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }    

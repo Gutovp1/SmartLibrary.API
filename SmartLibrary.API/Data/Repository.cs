@@ -36,9 +36,7 @@ namespace SmartLibrary.API.Data
             query = query.Include(r => r.Book);           
             query = query.Include(r => r.User);
             query = query.AsNoTracking().OrderBy(r => r.Id);
-            //return await query.ToArrayAsync();
             return await PageList<Rental>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
-
         }
 
         public Rental GetRental(int rentalId)
@@ -56,7 +54,6 @@ namespace SmartLibrary.API.Data
         {
             IQueryable<Publisher> query = _context.Publishers;
             query = query.AsNoTracking().OrderBy(p=>p.Id);
-            //return await query.ToArrayAsync();
             return await PageList<Publisher>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
@@ -71,7 +68,6 @@ namespace SmartLibrary.API.Data
             IQueryable<Book> query = _context.Books;
             query = query.Include(b => b.Publisher);
             query = query.AsNoTracking().OrderBy(b=>b.Id);
-            //return await query.ToArrayAsync();
             return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
@@ -87,7 +83,6 @@ namespace SmartLibrary.API.Data
         {
             IQueryable<User> query = _context.Users;
             query = query.AsNoTracking().OrderBy(u => u.Id);
-            //return await query.ToListAsync();
             return await PageList<User>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 

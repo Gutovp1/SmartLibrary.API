@@ -1,4 +1,6 @@
-﻿namespace SmartLibrary.API.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SmartLibrary.API.Models
 {
     public class Book
     {
@@ -17,7 +19,7 @@
             Quantity = quantity;
             Year = year;
         }
-
+        [Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }

@@ -13,11 +13,8 @@ namespace SmartLibrary.API.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Rental>()
-                .HasKey(rent=> new {rent.BookId, rent.UserId});
-
-            //builder.Entity<Book>()
-            //    .HasKey(book => new { book.PublisherId});
+            //builder.Entity<Rental>()
+            //    .HasKey(rent=> new {rent.Id,rent.BookId, rent.UserId});
 
             builder.Entity<User>()
                 .HasData(new List<User>()
@@ -59,6 +56,7 @@ namespace SmartLibrary.API.Data
                     new Rental(5,3,3,DateTime.Now),
                     new Rental(6,5,2,DateTime.Now),
                     new Rental(7,5,4,DateTime.Now),
+                    //new Rental((int)DateTime.Now.Ticks,5,4,DateTime.Now),
                 });
         }
     }

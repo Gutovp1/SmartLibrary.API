@@ -35,7 +35,7 @@ namespace SmartLibrary.API
 
             ////Authentication and Authorization
             //services.AddIdentityEntityFrameworkContextConfiguration(options =>
-            //    options.UseSqlite(Configuration.GetConnectionString("Default"), 
+            //    options.UseSqlite(Configuration.GetConnectionString("Default"),
             //    b => b.MigrationsAssembly("SmartLibrary.API")));
             //services.AddIdentityConfiguration();
             //services.AddJwtConfiguration(Configuration, "AppSettings");
@@ -45,7 +45,7 @@ namespace SmartLibrary.API
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
-            //services.AddSwaggerGen(c=>
+            //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo
             //    {
@@ -95,13 +95,8 @@ namespace SmartLibrary.API
                 app.UseSwaggerUI();
             }
             
-            
-
-            
             //app.UseAuthConfiguration();
-
             app.UseAuthorization();
-
             app.MapControllers();
         }
     }
