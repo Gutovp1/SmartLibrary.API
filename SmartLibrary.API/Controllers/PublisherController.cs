@@ -27,7 +27,7 @@ namespace SmartLibrary.API.Controllers
         }
 
         //// GET api/<PublisherController>/5
-        [HttpGet("{id}")]
+        [HttpGet("byid/{id}")]
         public IActionResult GetById(int id)
         {
             var publisher = this.repository.GetPublisher(id);
@@ -36,7 +36,7 @@ namespace SmartLibrary.API.Controllers
         }
 
         // POST api/<PublisherController>
-        [HttpPost]
+        [HttpPost("create")]
         public IActionResult Post(Publisher publisher)
         {
             this.repository.Add(publisher);
@@ -48,7 +48,7 @@ namespace SmartLibrary.API.Controllers
         }
 
         // PUT api/<PublisherController>/5
-        [HttpPut("{id}")]
+        [HttpPut("edit/{id}")]
         public IActionResult Put(int id, Publisher publisher)
         {
             var rent = this.repository.GetPublisher(id);
@@ -62,7 +62,7 @@ namespace SmartLibrary.API.Controllers
             return BadRequest("Publisher not found");
         }
         // PATCH api/<PublisherController>/5
-        [HttpPatch("{id}")]
+        [HttpPatch("editing/{id}")]
         public IActionResult Patch(int id, Publisher publisher)
         {
             var rent = this.repository.GetPublisher(id);
@@ -77,7 +77,7 @@ namespace SmartLibrary.API.Controllers
         }
 
         // DELETE api/<PublisherController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {
             var rent = this.repository.GetPublisher(id);
