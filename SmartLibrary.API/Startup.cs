@@ -19,7 +19,7 @@ namespace SmartLibrary.API
             //Enable CORS
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                c.AddPolicy("AllowOriginVue", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
             services.AddDbContext<SmartContext>(context => context.UseSqlite(Configuration.GetConnectionString("Default")));
@@ -85,7 +85,7 @@ namespace SmartLibrary.API
         public void Configure(WebApplication app, IWebHostEnvironment environment)
         {
             //Enable CORS
-            app.UseCors("AllowOrigin");
+            app.UseCors("AllowOriginVue");
             //app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             // Configure the HTTP request pipeline.
