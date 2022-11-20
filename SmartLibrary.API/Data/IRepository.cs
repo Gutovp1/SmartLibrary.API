@@ -14,6 +14,7 @@ namespace SmartLibrary.API.Data
         Task<PageList<Publisher>> GetAllPublishersAsync(PageParams pageParams);
         Publisher GetPublisher(int id);
         Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams);
+        Task<PageList<Book>> GetAvailableBooksAsync(PageParams pageParams);
         Book GetBook(int id);
         Task<PageList<User>> GetAllUsersAsync(PageParams pageParams);
         User GetUser(int id);

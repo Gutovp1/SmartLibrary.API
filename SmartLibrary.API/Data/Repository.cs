@@ -30,6 +30,13 @@ namespace SmartLibrary.API.Data
             return (_context.SaveChanges() > 0);
         }
 
+        //public void updateAvailability()
+        //{
+        //    IQueryable<Book> queryb = _context.Books;
+        //    queryb.
+        //    //foreach
+        //}
+
         public async Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams)
         {
             IQueryable<Rental> query = _context.Rentals;
@@ -68,6 +75,19 @@ namespace SmartLibrary.API.Data
             IQueryable<Book> query = _context.Books;
             query = query.Include(b => b.Publisher);
             query = query.AsNoTracking().OrderBy(b=>b.Id);
+            return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+        }
+
+        //public
+
+        public async Task<PageList<Book>> GetAvailableBooksAsync(PageParams pageParams)
+        {
+            IQueryable<Book> query = _context.Books;
+            //IQueryable<Rental> queryr = _context.Rentals;
+
+            //List<Book> booksFree = new List<Book>();
+            query = query.Include(b => b.Publisher);
+            query = query.AsNoTracking().OrderBy(b => b.Id);
             return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace SmartLibrary.API.Models
 {
@@ -14,6 +15,7 @@ namespace SmartLibrary.API.Models
             BookId = bookId;
             UserId = userId;
             RentDate = rentDate;
+            Book.QuantityAvailable--;
         }
         [Key]
         public int Id { get; set; }

@@ -32,6 +32,14 @@ namespace SmartLibrary.API.Controllers
             return Ok(bookResult);
         }
 
+        [HttpGet("available")]
+        public async Task<IActionResult> GetAvailable([FromQuery] PageParams pageParams)
+        {
+            var result = await this.repository.GetAvailableBooksAsync(pageParams);
+            var bookResult = this.mapper.Map<IEnumerable<BookDto>>(result);
+            Response.AddPagination(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
+            return Ok(bookResult);
+        }
         //// GET api/<BookController>/5
         [HttpGet("{id}")]
         public IActionResult GetById(int id)

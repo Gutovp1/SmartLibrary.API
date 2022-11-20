@@ -11,7 +11,7 @@ using SmartLibrary.API.Data;
 namespace SmartLibrary.API.Migrations
 {
     [DbContext(typeof(SmartContext))]
-    [Migration("20221116225215_init")]
+    [Migration("20221120164939_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace SmartLibrary.API.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("QuantityAvailable")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
@@ -60,6 +63,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Machado de Assis",
                             PublisherId = 1,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "D. Casmurro",
                             Year = 1888
                         },
@@ -69,6 +73,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Machado de Assis",
                             PublisherId = 1,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "Capitu",
                             Year = 1888
                         },
@@ -78,6 +83,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Machado de Assis",
                             PublisherId = 1,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "Memorias Postumas BC",
                             Year = 1888
                         },
@@ -87,6 +93,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Joao Guimaraes Rosa",
                             PublisherId = 2,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "Sagarana",
                             Year = 1988
                         },
@@ -96,6 +103,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Joao Guimaraes Rosa",
                             PublisherId = 2,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "Manoelzao",
                             Year = 1988
                         },
@@ -105,6 +113,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Joao Guimaraes Rosa",
                             PublisherId = 2,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "Grande Sertao: Veredas",
                             Year = 1988
                         },
@@ -114,6 +123,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Paulo Coelho",
                             PublisherId = 3,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "O Alquimista",
                             Year = 1998
                         },
@@ -123,6 +133,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Paulo Coelho",
                             PublisherId = 3,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "O Mensageiro",
                             Year = 1998
                         },
@@ -132,6 +143,7 @@ namespace SmartLibrary.API.Migrations
                             Author = "Aloisio Azevedo",
                             PublisherId = 4,
                             Quantity = 10,
+                            QuantityAvailable = 10,
                             Title = "O Cortiço",
                             Year = 1888
                         });
@@ -216,7 +228,7 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 1,
                             BookId = 2,
-                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7255),
+                            RentDate = new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5587),
                             ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2
                         },
@@ -224,7 +236,7 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 2,
                             BookId = 1,
-                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7274),
+                            RentDate = new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5609),
                             ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 4
                         },
@@ -232,7 +244,7 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 3,
                             BookId = 4,
-                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7275),
+                            RentDate = new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5612),
                             ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         },
@@ -240,7 +252,7 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 4,
                             BookId = 1,
-                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7276),
+                            RentDate = new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5613),
                             ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         },
@@ -248,7 +260,7 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 5,
                             BookId = 3,
-                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7277),
+                            RentDate = new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5615),
                             ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 3
                         },
@@ -256,7 +268,7 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 6,
                             BookId = 5,
-                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7279),
+                            RentDate = new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5618),
                             ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2
                         },
@@ -264,7 +276,7 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 7,
                             BookId = 5,
-                            RentDate = new DateTime(2022, 11, 16, 19, 52, 14, 843, DateTimeKind.Local).AddTicks(7280),
+                            RentDate = new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5620),
                             ReturnDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 4
                         });
