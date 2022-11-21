@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using SmartLibrary.API.Helper;
 using SmartLibrary.API.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace SmartLibrary.API.Data
 {
@@ -30,13 +31,6 @@ namespace SmartLibrary.API.Data
         {
             return (_context.SaveChanges() > 0);
         }
-
-        //public void updateAvailability()
-        //{
-        //    IQueryable<Book> queryb = _context.Books;
-
-        //    //foreach
-        //}
 
         public async Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams)
         {
@@ -73,8 +67,33 @@ namespace SmartLibrary.API.Data
 
         public async Task<PageList<Book>> GetAllBooksAsync(PageParams pageParams)
         {
-            IQueryable<Book> query = _context.Books;
-            query = query.Include(b => b.Publisher);
+            IQueryable<Book> queryb = _context.Books;
+            queryb = queryb.Include(b => b.Publisher);
+            IQueryable<Rental> queryr = _context.Rentals;
+            var leftjoin = from b in queryb
+                           join r in queryr
+                           on b.Id equals r.BookId into rents
+                           from rental in rents.DefaultIfEmpty()
+                           group rental by b.Id into grouped
+                           select new
+                           {
+                               bookId = grouped.Key,
+                               Count = grouped.Count()
+                           };
+            IQueryable<Book> query = from b in queryb
+                                     join lf in leftjoin
+                                     on b.Id equals lf.bookId
+                                     select new Book
+                                     {
+                                         Id = b.Id,
+                                         Title = b.Title,
+                                         Author = b.Author,
+                                         PublisherId = b.PublisherId,
+                                         Publisher = b.Publisher,
+                                         Quantity = b.Quantity,
+                                         QuantityAvailable = b.Quantity - lf.Count,
+                                         Year = b.Year
+                                     };
             query = query.AsNoTracking().OrderBy(b=>b.Id);
             return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
@@ -95,18 +114,12 @@ namespace SmartLibrary.API.Data
                            select new
                            {
                                bookId = grouped.Key,
-                               Count = grouped.Count(ren=>ren.BookId>=0)
+                               Count = grouped.Count()
                            };
-            //Console.WriteLine("Count\tBook Id");
-            //foreach(var data in leftjoin)
-            //{
-            //    Console.WriteLine(data.Count+"\t\t"+data.bookId);
-            //}
-
             IQueryable<Book> query = from b in queryb
                                      join lf in leftjoin
                                      on b.Id equals lf.bookId
-                                     //where b.Quantity != lf.Count
+                                     where b.Quantity != lf.Count
                                      select new Book
                                      {
                                          Id = b.Id,
@@ -118,12 +131,6 @@ namespace SmartLibrary.API.Data
                                          QuantityAvailable = b.Quantity - lf.Count,
                                          Year = b.Year
                                      };
-
-            Console.WriteLine("table of Book");
-            foreach (var d in query)
-            {
-                Console.WriteLine(d.Id + "\t" + d.Title + "\t" + d.Author + "\t" + d.PublisherId + "\t" + d.Quantity + "\t" + d.QuantityAvailable + "\t" + d.Year);
-            }
             query = query.AsNoTracking().OrderBy(b => b.Id);
             return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
