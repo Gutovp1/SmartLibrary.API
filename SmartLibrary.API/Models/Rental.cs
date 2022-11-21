@@ -15,7 +15,6 @@ namespace SmartLibrary.API.Models
             BookId = bookId;
             UserId = userId;
             RentDate = rentDate;
-            Book.QuantityAvailable--;
         }
         [Key]
         public int Id { get; set; }

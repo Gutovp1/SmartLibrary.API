@@ -8,11 +8,17 @@ namespace SmartLibrary.API.Helper
     {
         public SmartProfile()
         {
+            //CreateMap<Rental, BookDto>()
+            //    .ForMember(dest => dest.QuantityAvailable,
+            //    opt => opt.MapFrom(src => src)
+            //    );
+
             CreateMap<Rental, RentalDto>()
                 .ForMember(
                 dest => dest.BookTitle,
                 opt => opt.MapFrom(src => $"{src.Book.Title}")
                 );
+
             CreateMap<RentalDto, Rental>();
             
             CreateMap<Rental, RentalRegisterDto>().ReverseMap();
