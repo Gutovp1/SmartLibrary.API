@@ -84,6 +84,8 @@ namespace SmartLibrary.API.Data
         public async Task<PageList<Book>> GetAvailableBooksAsync(PageParams pageParams)
         {
             IQueryable<Book> queryb = _context.Books;
+            queryb = queryb.Include(b => b.Publisher);
+
             IQueryable<Rental> queryr = _context.Rentals;
             var leftjoin = from b in queryb
                            join r in queryr
@@ -94,35 +96,36 @@ namespace SmartLibrary.API.Data
                            {
                                bookId = grouped.Key,
                                Count = grouped.Count(ren=>ren.BookId>=0)
-                               
                            };
-            Console.WriteLine("Count\tBook Id");
-            foreach(var data in leftjoin)
-            {
-                Console.WriteLine(data.Count+"\t\t"+data.bookId);
-            }
-            var result = from b in queryb
-                         join lf in leftjoin
-                         on b.Id equals lf.bookId
-                         where b.Quantity != lf.Count
-                         select new
-                         {
-                             b.Id,
-                             b.Title,
-                             b.Author,
-                             b.PublisherId,
-                             b.Quantity,
-                             QuantityAvailable= lf.Count,
-                             b.Year
-                         };
+            //Console.WriteLine("Count\tBook Id");
+            //foreach(var data in leftjoin)
+            //{
+            //    Console.WriteLine(data.Count+"\t\t"+data.bookId);
+            //}
+
+            IQueryable<Book> query = from b in queryb
+                                     join lf in leftjoin
+                                     on b.Id equals lf.bookId
+                                     //where b.Quantity != lf.Count
+                                     select new Book
+                                     {
+                                         Id = b.Id,
+                                         Title = b.Title,
+                                         Author = b.Author,
+                                         PublisherId = b.PublisherId,
+                                         Publisher = b.Publisher,
+                                         Quantity = b.Quantity,
+                                         QuantityAvailable = b.Quantity - lf.Count,
+                                         Year = b.Year
+                                     };
+
             Console.WriteLine("table of Book");
-            foreach (var d in result)
+            foreach (var d in query)
             {
-                Console.WriteLine(d.Id + "\t" +d.Title + "\t" +d.Author + "\t" +d.PublisherId + "\t" +d.Quantity + "\t" +d.QuantityAvailable + "\t" +d.Year );
+                Console.WriteLine(d.Id + "\t" + d.Title + "\t" + d.Author + "\t" + d.PublisherId + "\t" + d.Quantity + "\t" + d.QuantityAvailable + "\t" + d.Year);
             }
-            queryb = queryb.Include(b => b.Publisher);
-            queryb = queryb.AsNoTracking().OrderBy(b => b.Id);
-            return await PageList<Book>.CreateAsync(queryb, pageParams.PageNumber, pageParams.PageSize);
+            query = query.AsNoTracking().OrderBy(b => b.Id);
+            return await PageList<Book>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public Book GetBook(int id)
