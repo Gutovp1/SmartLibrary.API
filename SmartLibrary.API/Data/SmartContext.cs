@@ -49,13 +49,13 @@ namespace SmartLibrary.API.Data
                 });
             builder.Entity<Rental>()
                 .HasData(new List<Rental>() { 
-                    new Rental(1,2,2,DateTime.Now),
-                    new Rental(2,1,4,DateTime.Now),
-                    new Rental(3,4,1,DateTime.Now),
-                    new Rental(4,1,1,DateTime.Now),
-                    new Rental(5,3,3,DateTime.Now),
-                    new Rental(6,5,2,DateTime.Now),
-                    new Rental(7,5,4,DateTime.Now),
+                    new Rental(1,2,2,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
+                    new Rental(2,1,4,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
+                    new Rental(3,4,1,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
+                    new Rental(4,1,1,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
+                    new Rental(5,3,3,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
+                    new Rental(6,5,2,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
+                    new Rental(7,5,4,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
                     //new Rental((int)DateTime.Now.Ticks,5,4,DateTime.Now),
                 });
         }

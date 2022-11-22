@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -77,8 +76,8 @@ namespace SmartLibrary.API.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     BookId = table.Column<int>(type: "INTEGER", nullable: false),
                     UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    RentDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ReturnDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    RentDate = table.Column<string>(type: "TEXT", nullable: false),
+                    ReturnDate = table.Column<string>(type: "TEXT", nullable: false),
                     ReturnRealDate = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -196,37 +195,37 @@ namespace SmartLibrary.API.Migrations
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 1, 2, new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5587), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2 });
+                values: new object[] { 1, 2, "2022-11-21", "2022-11-21", "", 2 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 2, 1, new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5609), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 4 });
+                values: new object[] { 2, 1, "2022-11-21", "2022-11-21", "", 4 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 3, 4, new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5612), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1 });
+                values: new object[] { 3, 4, "2022-11-21", "2022-11-21", "", 1 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 4, 1, new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5613), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1 });
+                values: new object[] { 4, 1, "2022-11-21", "2022-11-21", "", 1 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 5, 3, new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5615), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 3 });
+                values: new object[] { 5, 3, "2022-11-21", "2022-11-21", "", 3 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 6, 5, new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5618), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2 });
+                values: new object[] { 6, 5, "2022-11-21", "2022-11-21", "", 2 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 7, 5, new DateTime(2022, 11, 20, 13, 49, 38, 354, DateTimeKind.Local).AddTicks(5620), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 4 });
+                values: new object[] { 7, 5, "2022-11-21", "2022-11-21", "", 4 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_PublisherId",

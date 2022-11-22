@@ -7,8 +7,8 @@ namespace SmartLibrary.API.Dtos
         public int Id { get; set; }
         public string BookTitle { get; set; }
         public string UserName { get; set; }
-        public DateTime RentDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public string RentDate { get; set; }
+        public string ReturnDate { get; set; }
 
         public string? ReturnRealDate { get; set; }
     }

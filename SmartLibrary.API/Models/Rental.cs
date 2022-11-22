@@ -9,12 +9,13 @@ namespace SmartLibrary.API.Models
         {
 
         }
-        public Rental(int id, int bookId, int userId, DateTime rentDate)
+        public Rental(int id, int bookId, int userId, string rentDate, string returnDate)
         {
             Id = id;
             BookId = bookId;
             UserId = userId;
             RentDate = rentDate;
+            ReturnDate = returnDate;
         }
         [Key]
         public int Id { get; set; }
@@ -22,9 +23,9 @@ namespace SmartLibrary.API.Models
         public Book Book { get; set; }
         public int UserId { get; set; }
         public User User { get; set; }
-        public DateTime RentDate { get; set; }
-        public DateTime ReturnDate { get; set; }
-        public string? ReturnRealDate { get; set; }
+        public string RentDate { get; set; }
+        public string ReturnDate { get; set; }
+        public string? ReturnRealDate { get; set; } = "";
 
     }
 }

@@ -78,7 +78,7 @@ namespace SmartLibrary.API.Data
                            select new
                            {
                                bookId = grouped.Key,
-                               Count = grouped.Count()
+                               Count = grouped.Count(r=> r.ReturnRealDate == "")
                            };
             IQueryable<Book> query = from b in queryb
                                      join lf in leftjoin
@@ -114,7 +114,7 @@ namespace SmartLibrary.API.Data
                            select new
                            {
                                bookId = grouped.Key,
-                               Count = grouped.Count()
+                               Count = grouped.Count(r => r.ReturnRealDate=="")
                            };
             IQueryable<Book> query = from b in queryb
                                      join lf in leftjoin
