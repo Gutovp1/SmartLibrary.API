@@ -2,10 +2,10 @@
 {
     public class PageParams
     {
-        public const int MaxPageSize =50;
+        public const int MaxPageSize =10000;
 
         public int PageNumber { get; set; } = 1;
-        private int _pageSize =10; 
+        private int _pageSize =5000; 
         public int PageSize {
             get
             {
