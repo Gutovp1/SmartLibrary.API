@@ -82,6 +82,8 @@ namespace SmartLibrary.API.Controllers
             var us = this.repository.GetUser(id);
             if (us == null) return BadRequest("User not found");
 
+            if (this.repository.IsUserRenting(us)) return BadRequest("User has not been deleted due to related pending rentals.");
+
             this.repository.Delete(us);
             if (this.repository.SaveChanges())
             {

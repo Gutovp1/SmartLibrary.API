@@ -102,6 +102,9 @@ namespace SmartLibrary.API.Controllers
             var bk = this.repository.GetBook(id);
             if (bk == null) return BadRequest("Book not found");
 
+            //if (this.repository.IsBookRented(bk)) return BadRequest("There are pending rentals for this book");
+            if (bk.Quantity != bk.QuantityAvailable) return BadRequest("Book has not been deleted due to related pending rentals.");
+            
             this.repository.Delete(bk);
             if (this.repository.SaveChanges())
             {

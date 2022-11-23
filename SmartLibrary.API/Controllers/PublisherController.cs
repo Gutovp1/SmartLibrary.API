@@ -83,6 +83,8 @@ namespace SmartLibrary.API.Controllers
             var rent = this.repository.GetPublisher(id);
             if (rent == null) return BadRequest("Publisher not found");
 
+            if (this.repository.IsPublisherRented(rent)) return BadRequest("Publisher has not been deleted due to related pending rentals.");
+
             this.repository.Delete(rent);
             if (this.repository.SaveChanges())
             {

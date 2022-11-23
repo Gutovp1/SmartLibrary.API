@@ -32,6 +32,7 @@ namespace SmartLibrary.API.Data
             return (_context.SaveChanges() > 0);
         }
 
+        
         public async Task<PageList<Rental>> GetAllRentalsAsync(PageParams pageParams)
         {
             IQueryable<Rental> query = _context.Rentals;
@@ -137,8 +138,33 @@ namespace SmartLibrary.API.Data
 
         public Book GetBook(int id)
         {
-            IQueryable<Book> query = _context.Books;
-            query = query.Include(b => b.Publisher);
+            IQueryable<Book> queryb = _context.Books;
+            queryb = queryb.Include(b => b.Publisher);
+            IQueryable<Rental> queryr = _context.Rentals;
+            var leftjoin = from b in queryb
+                           join r in queryr
+                           on b.Id equals r.BookId into rents
+                           from rental in rents.DefaultIfEmpty()
+                           group rental by b.Id into grouped
+                           select new
+                           {
+                               bookId = grouped.Key,
+                               Count = grouped.Count(r => r.ReturnRealDate == "")
+                           };
+            IQueryable<Book> query = from b in queryb
+                                     join lf in leftjoin
+                                     on b.Id equals lf.bookId
+                                     select new Book
+                                     {
+                                         Id = b.Id,
+                                         Title = b.Title,
+                                         Author = b.Author,
+                                         PublisherId = b.PublisherId,
+                                         Publisher = b.Publisher,
+                                         Quantity = b.Quantity,
+                                         QuantityAvailable = b.Quantity - lf.Count,
+                                         Year = b.Year
+                                     };
             query = query.AsNoTracking().OrderBy(b => b.Id).Where(b=>b.Id==id);
             return query.FirstOrDefault();
         }
@@ -156,5 +182,38 @@ namespace SmartLibrary.API.Data
             query = query.AsNoTracking().OrderBy(u => u.Id).Where(u => u.Id == id);
             return query.FirstOrDefault();
         }
+
+        public bool IsBookRented(Book book) 
+        {
+            IQueryable<Rental> queryr = _context.Rentals;
+            var anyRented = (from r in queryr
+                            where r.BookId == book.Id && r.ReturnRealDate == ""
+                            select r.BookId).Count();
+            if (anyRented!=0)
+                return true;
+            return false;
+        }
+        public bool IsUserRenting(User user)
+        {
+            IQueryable<Rental> queryr = _context.Rentals;
+            var anyRented = (from r in queryr
+                             where r.UserId == user.Id && r.ReturnRealDate == ""
+                             select r.UserId).Count();
+            if (anyRented !=0)
+                return true;
+            return false;
+        }
+        public bool IsPublisherRented(Publisher publisher)
+        {
+            IQueryable<Rental> queryr = _context.Rentals;
+            queryr = queryr.Include(r => r.Book);
+            var anyRented = (from r in queryr
+                             where r.Book.PublisherId == publisher.Id && r.ReturnRealDate == ""
+                             select r.Book.PublisherId).Count();
+            if (anyRented != 0)
+                return true;
+            return false;
+        }
+
     }
 }

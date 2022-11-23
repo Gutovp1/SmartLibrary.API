@@ -18,5 +18,9 @@ namespace SmartLibrary.API.Data
         Book GetBook(int id);
         Task<PageList<User>> GetAllUsersAsync(PageParams pageParams);
         User GetUser(int id);
+        bool IsBookRented(Book book);
+        bool IsUserRenting(User user);
+        bool IsPublisherRented(Publisher publisher);
+
     }
 }
