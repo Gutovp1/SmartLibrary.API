@@ -1,7 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using NetDevPack.Identity.Jwt;
 using SmartLibrary.API.Data;
+
+using NetDevPack.Identity.User;
+using NetDevPack.Identity;
 
 namespace SmartLibrary.API
 {
@@ -33,60 +37,54 @@ namespace SmartLibrary.API
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            ////Authentication and Authorization
-            //services.AddIdentityEntityFrameworkContextConfiguration(options =>
-            //    options.UseSqlite(Configuration.GetConnectionString("Default"),
-            //    b => b.MigrationsAssembly("SmartLibrary.API")));
-            //services.AddIdentityConfiguration();
-            //services.AddJwtConfiguration(Configuration, "AppSettings");
+            //////Authentication and Authorization
+            services.AddIdentityEntityFrameworkContextConfiguration(options =>
+                options.UseSqlite(Configuration.GetConnectionString("Default")));
+
+            services.AddJwtConfiguration(Configuration, "AppSettings");
+            services.AddIdentityConfiguration();
+
+            ////// Setting the interactive AspNetUser (logged in)
+            //services.AddAspNetUserConfiguration();
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new OpenApiInfo
-            //    {
-            //        Title = "Minimal API Sample",
-            //        Description = "Developed by Eduardo Pires - Owner @ desenvolvedor.io",
-            //        Contact = new OpenApiContact { Name = "Eduardo Pires", Email = "contato@eduardopires.net.br" },
-            //        License = new OpenApiLicense { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
-            //    });
+            services.AddSwaggerGen(c =>
+            {
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Enter the JWT token in this format: Bearer {your token}",
+                    Name = "Authorization",
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
 
-            //    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            //    {
-            //        Description = "Enter the JWT token in this format: Bearer {your token}",
-            //        Name = "Authorization",
-            //        Scheme = "Bearer",
-            //        BearerFormat = "JWT",
-            //        In = ParameterLocation.Header,
-            //        Type = SecuritySchemeType.ApiKey
-            //    });
-
-            //    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            //    {
-            //        {
-            //            new OpenApiSecurityScheme
-            //            {
-            //                Reference = new OpenApiReference
-            //                {
-            //                    Type = ReferenceType.SecurityScheme,
-            //                    Id = "Bearer"
-            //                }
-            //            },
-            //            new string[] {}
-            //        }
-            //    });
-            //});
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                }
+                            },
+                            new string[] {}
+                        }
+                    });
+            });
 
         }
         public void Configure(WebApplication app, IWebHostEnvironment environment)
         {
             //Enable CORS
             app.UseCors("AllowOriginVue");
-            //app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             // Configure the HTTP request pipeline.
             if (environment.IsDevelopment())
@@ -95,8 +93,9 @@ namespace SmartLibrary.API
                 app.UseSwaggerUI();
             }
             
-            //app.UseAuthConfiguration();
-            app.UseAuthorization();
+            app.UseAuthConfiguration();
+            //app.UseAuthorization();
+
             app.MapControllers();
         }
     }
