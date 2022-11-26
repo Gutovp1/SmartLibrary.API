@@ -25,7 +25,7 @@ namespace SmartLibrary.API.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        [AllowAnonymous]
+        
         public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
             var result = await this.repository.GetAllRentalsAsync(pageParams);
@@ -36,7 +36,7 @@ namespace SmartLibrary.API.Controllers
 
         //// GET api/<RentalController>/5
         [HttpGet("{id}")]
-        [AllowAnonymous]
+        
         public IActionResult GetById(int id)
         {
             var rental = this.repository.GetRental(id);
@@ -47,7 +47,7 @@ namespace SmartLibrary.API.Controllers
 
         // POST api/<RentalController>
         [HttpPost]
-        [Authorize]
+        
         public IActionResult Post(RentalRegisterDto model)
         {
             var rental = this.mapper.Map<Rental>(model);
@@ -62,7 +62,7 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<RentalController>/5
         [HttpPut("{id}")]
-        [Authorize]
+        
         public IActionResult Put(int id, RentalRegisterDto model)
         {
             var rental = this.repository.GetRental(id);
@@ -78,7 +78,7 @@ namespace SmartLibrary.API.Controllers
         }
         // PATCH api/<RentalController>/5
         [HttpPatch("{id}")]
-        [Authorize]
+        
         public IActionResult Patch(int id, RentalRegisterDto model)
         {
             var rental = this.repository.GetRental(id);
@@ -95,7 +95,7 @@ namespace SmartLibrary.API.Controllers
 
         // DELETE api/<RentalController>/5
         [HttpDelete("{id}")]
-        [Authorize]
+        
         public IActionResult Delete(int id)
         {
             var rent = this.repository.GetRental(id);

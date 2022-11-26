@@ -59,7 +59,9 @@ namespace SmartLibrary.API.Controllers
 
             if (result.Succeeded)
             {
-                return Ok(GetFullJwt(loginUser.Email));
+                return Ok(GetUserResponse(loginUser.Email));
+
+                //return Ok(GetFullJwt(loginUser.Email));
             }
 
             if (result.IsLockedOut)

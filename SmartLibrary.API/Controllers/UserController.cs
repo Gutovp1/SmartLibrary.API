@@ -21,7 +21,7 @@ namespace SmartLibrary.API.Controllers
             this.repository = repository;
         }
         [HttpGet]
-        [AllowAnonymous]
+        
         public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
             var result = await this.repository.GetAllUsersAsync(pageParams);
@@ -30,7 +30,7 @@ namespace SmartLibrary.API.Controllers
 
         //// GET api/<UserController>/5
         [HttpGet("{id}")]
-        [AllowAnonymous]
+        
         public IActionResult GetById(int id)
         {
             var user = this.repository.GetUser(id);
@@ -40,7 +40,7 @@ namespace SmartLibrary.API.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        [Authorize]
+        
         public IActionResult Post(User user)
         {
             this.repository.Add(user);
@@ -53,7 +53,7 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        [Authorize]
+        
         public IActionResult Put(int id, User user)
         {
             var us = this.repository.GetUser(id);
@@ -68,7 +68,7 @@ namespace SmartLibrary.API.Controllers
         }
         // PATCH api/<UserController>/5
         [HttpPatch("{id}")]
-        [Authorize]
+        
         public IActionResult Patch(int id, User user)
         {
             var us = this.repository.GetUser(id);
@@ -84,7 +84,7 @@ namespace SmartLibrary.API.Controllers
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        [Authorize]
+        
         public IActionResult Delete(int id)
         {
             var us = this.repository.GetUser(id);

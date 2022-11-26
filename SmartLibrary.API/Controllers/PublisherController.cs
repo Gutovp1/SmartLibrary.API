@@ -20,7 +20,6 @@ namespace SmartLibrary.API.Controllers
             this.repository = repository;
         }
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
             var result = await this.repository.GetAllPublishersAsync(pageParams);
@@ -30,7 +29,6 @@ namespace SmartLibrary.API.Controllers
 
         //// GET api/<PublisherController>/5
         [HttpGet("{id}")]
-        [AllowAnonymous]
         public IActionResult GetById(int id)
         {
             var publisher = this.repository.GetPublisher(id);
@@ -40,7 +38,7 @@ namespace SmartLibrary.API.Controllers
 
         // POST api/<PublisherController>
         [HttpPost]
-        [Authorize]
+        //[Authorize]
         public IActionResult Post(Publisher publisher)
         {
             this.repository.Add(publisher);
@@ -53,7 +51,6 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<PublisherController>/5
         [HttpPut("{id}")]
-        [Authorize]
         public IActionResult Put(int id, Publisher publisher)
         {
             var rent = this.repository.GetPublisher(id);
@@ -68,7 +65,7 @@ namespace SmartLibrary.API.Controllers
         }
         // PATCH api/<PublisherController>/5
         [HttpPatch("{id}")]
-        [Authorize]
+        
         public IActionResult Patch(int id, Publisher publisher)
         {
             var rent = this.repository.GetPublisher(id);
@@ -84,7 +81,6 @@ namespace SmartLibrary.API.Controllers
 
         // DELETE api/<PublisherController>/5
         [HttpDelete("{id}")]
-        [Authorize]
         public IActionResult Delete(int id)
         {
             var rent = this.repository.GetPublisher(id);

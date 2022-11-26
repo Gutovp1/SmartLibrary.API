@@ -25,7 +25,7 @@ namespace SmartLibrary.API.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        [AllowAnonymous]
+        
         public async Task<IActionResult> Get([FromQuery]PageParams pageParams)
         {
             var result = await this.repository.GetAllBooksAsync(pageParams);
@@ -35,7 +35,7 @@ namespace SmartLibrary.API.Controllers
         }
 
         [HttpGet("available")]
-        [AllowAnonymous]
+        
         public async Task<IActionResult> GetAvailable([FromQuery] PageParams pageParams)
         {
             var result = await this.repository.GetAvailableBooksAsync(pageParams);
@@ -45,7 +45,7 @@ namespace SmartLibrary.API.Controllers
         }
         //// GET api/<BookController>/5
         [HttpGet("{id}")]
-        [AllowAnonymous]
+        
         public IActionResult GetById(int id)
         {
             var book = this.repository.GetBook(id);
@@ -56,7 +56,7 @@ namespace SmartLibrary.API.Controllers
 
         // POST api/<BookController>
         [HttpPost]
-        [Authorize]
+        
         public IActionResult Post(BookRegisterDto model)
         {
             var book = this.mapper.Map<Book>(model);
@@ -71,7 +71,7 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<BookController>/5
         [HttpPut("{id}")]
-        [Authorize]
+        
         public IActionResult Put(int id, BookRegisterDto model)
         {
             var bk = this.repository.GetBook(id);
@@ -87,7 +87,7 @@ namespace SmartLibrary.API.Controllers
         }
         // PATCH api/<BookController>/5
         [HttpPatch("{id}")]
-        [Authorize]
+        
         public IActionResult Patch(int id, BookRegisterDto model)
         {
             var bk = this.repository.GetBook(id);
@@ -104,7 +104,7 @@ namespace SmartLibrary.API.Controllers
 
         // DELETE api/<BookController>/5
         [HttpDelete("{id}")]
-        [Authorize]
+        
         public IActionResult Delete(int id)
         {
             var bk = this.repository.GetBook(id);
