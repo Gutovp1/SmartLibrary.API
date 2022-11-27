@@ -49,7 +49,7 @@ namespace SmartLibrary.API.Controllers
         public IActionResult GetById(int id)
         {
             var book = this.repository.GetBook(id);
-            if(book == null) return BadRequest("Book not found");
+            if(book == null) return BadRequest("Book has not been found.");
             var bookDto = this.mapper.Map<BookDto>(book);
             return Ok(bookDto);
         }
@@ -67,7 +67,7 @@ namespace SmartLibrary.API.Controllers
                 //return Ok(book);
                 return Created($"/api/book/{model.Id}", this.mapper.Map<BookDto>(book));
             }
-            return BadRequest("Book not found");
+            return BadRequest("Book has not been found.");
         }
 
         // PUT api/<BookController>/5
@@ -77,7 +77,7 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Put(int id, BookRegisterDto model)
         {
             var bk = this.repository.GetBook(id);
-            if (bk == null) return BadRequest("Book not found");
+            if (bk == null) return BadRequest("Book has not been found.");
 
             this.mapper.Map(model, bk);
             this.repository.Update(bk);
@@ -85,7 +85,7 @@ namespace SmartLibrary.API.Controllers
             {
                 return Created($"/api/book/{model.Id}", this.mapper.Map<BookDto>(bk));
             }
-            return BadRequest("Book not found");
+            return BadRequest("Book has not been found.");
         }
         // PATCH api/<BookController>/5
         [HttpPatch("{id}")]
@@ -94,7 +94,7 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Patch(int id, BookRegisterDto model)
         {
             var bk = this.repository.GetBook(id);
-            if (bk == null) return BadRequest("Book not found");
+            if (bk == null) return BadRequest("Book has not been found.");
 
             this.mapper.Map(model, bk);
             this.repository.Update(bk);
@@ -102,7 +102,7 @@ namespace SmartLibrary.API.Controllers
             {
                 return Created($"/api/book/{model.Id}", this.mapper.Map<BookDto>(bk));
             }
-            return BadRequest("Book not found");
+            return BadRequest("Book has not been found.");
         }
 
         // DELETE api/<BookController>/5
@@ -112,7 +112,7 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Delete(int id)
         {
             var bk = this.repository.GetBook(id);
-            if (bk == null) return BadRequest("Book not found");
+            if (bk == null) return BadRequest("Book has not been found.");
 
             //if (this.repository.IsBookRented(bk)) return BadRequest("There are pending rentals for this book");
             if (bk.Quantity != bk.QuantityAvailable) return BadRequest("Book has not been deleted due to related pending rentals.");
@@ -120,9 +120,9 @@ namespace SmartLibrary.API.Controllers
             this.repository.Delete(bk);
             if (this.repository.SaveChanges())
             {
-                return Ok("Book deleted");
+                return Ok("Book has been deleted successfully.");
             }
-            return BadRequest("Book not found");
+            return BadRequest("Book has not been found.");
         }
     }
 }

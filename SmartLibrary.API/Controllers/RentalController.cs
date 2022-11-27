@@ -40,7 +40,7 @@ namespace SmartLibrary.API.Controllers
         public IActionResult GetById(int id)
         {
             var rental = this.repository.GetRental(id);
-            if(rental == null) return BadRequest("Rental not found");
+            if(rental == null) return BadRequest("Rental has not been found.");
             var rentalDto = this.mapper.Map<RentalDto>(rental);
             return Ok(rentalDto);
         }
@@ -58,7 +58,7 @@ namespace SmartLibrary.API.Controllers
             {
                 return Created($"/api/rental/{model.Id}", this.mapper.Map<RentalDto>(rental));
             }
-            return BadRequest("Rental not found");
+            return BadRequest("Rental has not been found.");
         }
 
         // PUT api/<RentalController>/5
@@ -68,7 +68,7 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Put(int id, RentalRegisterDto model)
         {
             var rental = this.repository.GetRental(id);
-            if (rental == null) return BadRequest("Rental not found");
+            if (rental == null) return BadRequest("Rental has not been found.");
 
             this.mapper.Map(model, rental);
             this.repository.Update(rental);
@@ -76,7 +76,7 @@ namespace SmartLibrary.API.Controllers
             {
                 return Created($"/api/rental/{model.Id}", this.mapper.Map<RentalDto>(rental));
             }
-            return BadRequest("Rental not found");
+            return BadRequest("Rental has not been found.");
         }
         // PATCH api/<RentalController>/5
         [HttpPatch("{id}")]
@@ -85,7 +85,7 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Patch(int id, RentalRegisterDto model)
         {
             var rental = this.repository.GetRental(id);
-            if (rental == null) return BadRequest("Rental not found");
+            if (rental == null) return BadRequest("Rental has not been found.");
 
             this.mapper.Map(model, rental);
             this.repository.Update(rental);
@@ -93,7 +93,7 @@ namespace SmartLibrary.API.Controllers
             {
                 return Created($"/api/rental/{model.Id}", this.mapper.Map<RentalDto>(rental));
             }
-            return BadRequest("Rental not found");
+            return BadRequest("Rental has not been found.");
         }
 
         // DELETE api/<RentalController>/5
@@ -103,14 +103,14 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Delete(int id)
         {
             var rent = this.repository.GetRental(id);
-            if (rent == null) return BadRequest("Rental not found");
+            if (rent == null) return BadRequest("Rental has not been found.");
 
             this.repository.Delete(rent);
             if (this.repository.SaveChanges())
             {
-                return Ok("Rental deleted");
+                return Ok("Rental has been deleted successfully.");
             }
-            return BadRequest("Rental not found");
+            return BadRequest("Rental has not been found.");
         }
     }
 }

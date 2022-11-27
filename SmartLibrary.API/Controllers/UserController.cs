@@ -34,7 +34,7 @@ namespace SmartLibrary.API.Controllers
         public IActionResult GetById(int id)
         {
             var user = this.repository.GetUser(id);
-            if(user == null) return BadRequest("User not found");
+            if(user == null) return BadRequest("User has not been found.");
             return Ok(user);
         }
 
@@ -49,7 +49,7 @@ namespace SmartLibrary.API.Controllers
             {
                 return Ok(user);
             }
-            return BadRequest("User not found");
+            return BadRequest("User has not been found.");
         }
 
         // PUT api/<UserController>/5
@@ -59,14 +59,14 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Put(int id, User user)
         {
             var us = this.repository.GetUser(id);
-            if (us == null) return BadRequest("User not found");
+            if (us == null) return BadRequest("User has not been found.");
 
             this.repository.Update(user);
             if (this.repository.SaveChanges())
             {
                 return Ok(user);
             }
-            return BadRequest("User not found");
+            return BadRequest("User has not been found.");
         }
         // PATCH api/<UserController>/5
         [HttpPatch("{id}")]
@@ -75,14 +75,14 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Patch(int id, User user)
         {
             var us = this.repository.GetUser(id);
-            if (us == null) return BadRequest("User not found");
+            if (us == null) return BadRequest("User has not been found.");
 
             this.repository.Update(user);
             if (this.repository.SaveChanges())
             {
                 return Ok(user);
             }
-            return BadRequest("User not found");
+            return BadRequest("User has not been found.");
         }
 
         // DELETE api/<UserController>/5
@@ -92,16 +92,16 @@ namespace SmartLibrary.API.Controllers
         public IActionResult Delete(int id)
         {
             var us = this.repository.GetUser(id);
-            if (us == null) return BadRequest("User not found");
+            if (us == null) return BadRequest("User has not been found.");
 
             if (this.repository.IsUserRenting(us)) return BadRequest("User has not been deleted due to related pending rentals.");
 
             this.repository.Delete(us);
             if (this.repository.SaveChanges())
             {
-                return Ok("User deleted");
+                return Ok("User has been deleted successfully.");
             }
-            return BadRequest("User not found");
+            return BadRequest("User has not been found.");
         }
     }
 }
