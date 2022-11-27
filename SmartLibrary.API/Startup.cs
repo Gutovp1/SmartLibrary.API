@@ -6,6 +6,10 @@ using SmartLibrary.API.Data;
 
 using NetDevPack.Identity.User;
 using NetDevPack.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace SmartLibrary.API
 {
@@ -32,7 +36,7 @@ namespace SmartLibrary.API
 
             //JSON Serializer 
             services.AddControllers()
-                .AddNewtonsoftJson(opt =>opt.SerializerSettings.ReferenceLoopHandling = 
+                .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -42,6 +46,7 @@ namespace SmartLibrary.API
                 options.UseSqlite(Configuration.GetConnectionString("Default")));
 
             services.AddJwtConfiguration(Configuration, "AppSettings");
+            
             services.AddIdentityConfiguration();
 
             ////// Setting the interactive AspNetUser (logged in)
@@ -92,7 +97,7 @@ namespace SmartLibrary.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            
+
             app.UseAuthConfiguration();
             //app.UseAuthorization();
 

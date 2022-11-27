@@ -47,7 +47,8 @@ namespace SmartLibrary.API.Controllers
 
         // POST api/<RentalController>
         [HttpPost]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Post(RentalRegisterDto model)
         {
             var rental = this.mapper.Map<Rental>(model);
@@ -62,7 +63,8 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<RentalController>/5
         [HttpPut("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Put(int id, RentalRegisterDto model)
         {
             var rental = this.repository.GetRental(id);
@@ -78,7 +80,8 @@ namespace SmartLibrary.API.Controllers
         }
         // PATCH api/<RentalController>/5
         [HttpPatch("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Patch(int id, RentalRegisterDto model)
         {
             var rental = this.repository.GetRental(id);
@@ -95,7 +98,8 @@ namespace SmartLibrary.API.Controllers
 
         // DELETE api/<RentalController>/5
         [HttpDelete("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Delete(int id)
         {
             var rent = this.repository.GetRental(id);

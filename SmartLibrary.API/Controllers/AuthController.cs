@@ -13,7 +13,7 @@ namespace SmartLibrary.API.Controllers
     //[Route("api/account")]
     [Route("api")]
     [ApiController]
-    public class AuthController : Controller
+    public class AuthController : ControllerBase
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;

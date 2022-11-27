@@ -40,7 +40,8 @@ namespace SmartLibrary.API.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Post(User user)
         {
             this.repository.Add(user);
@@ -53,7 +54,8 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Put(int id, User user)
         {
             var us = this.repository.GetUser(id);
@@ -68,7 +70,8 @@ namespace SmartLibrary.API.Controllers
         }
         // PATCH api/<UserController>/5
         [HttpPatch("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Patch(int id, User user)
         {
             var us = this.repository.GetUser(id);
@@ -84,7 +87,8 @@ namespace SmartLibrary.API.Controllers
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Delete(int id)
         {
             var us = this.repository.GetUser(id);

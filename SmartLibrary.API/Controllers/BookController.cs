@@ -56,7 +56,8 @@ namespace SmartLibrary.API.Controllers
 
         // POST api/<BookController>
         [HttpPost]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Post(BookRegisterDto model)
         {
             var book = this.mapper.Map<Book>(model);
@@ -71,7 +72,8 @@ namespace SmartLibrary.API.Controllers
 
         // PUT api/<BookController>/5
         [HttpPut("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Put(int id, BookRegisterDto model)
         {
             var bk = this.repository.GetBook(id);
@@ -87,7 +89,8 @@ namespace SmartLibrary.API.Controllers
         }
         // PATCH api/<BookController>/5
         [HttpPatch("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Patch(int id, BookRegisterDto model)
         {
             var bk = this.repository.GetBook(id);
@@ -104,7 +107,8 @@ namespace SmartLibrary.API.Controllers
 
         // DELETE api/<BookController>/5
         [HttpDelete("{id}")]
-        
+        [Authorize(AuthenticationSchemes = "Bearer")]
+
         public IActionResult Delete(int id)
         {
             var bk = this.repository.GetBook(id);
