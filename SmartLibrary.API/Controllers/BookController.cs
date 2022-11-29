@@ -78,6 +78,9 @@ namespace SmartLibrary.API.Controllers
         {
             var bk = this.repository.GetBook(id);
             if (bk == null) return BadRequest("Book has not been found.");
+            int quantityRented = bk.Quantity - bk.QuantityAvailable;
+            //if (this.repository.IsQuantityInvalid(bk)) return BadRequest("Quantity cannot be lower than the quantity of rented books.");
+            if (model.Quantity < quantityRented) return BadRequest("Quantity cannot be lower than the quantity of rented books ("+ quantityRented+").");
 
             this.mapper.Map(model, bk);
             this.repository.Update(bk);

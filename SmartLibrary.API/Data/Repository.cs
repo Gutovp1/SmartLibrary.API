@@ -183,14 +183,14 @@ namespace SmartLibrary.API.Data
             return query.FirstOrDefault();
         }
 
-        public bool IsBookRented(Book book) 
+        public bool IsQuantityInvalid(Book book) 
         {
             IQueryable<Rental> queryr = _context.Rentals;
             var anyRented = (from r in queryr
                             where r.BookId == book.Id && r.ReturnRealDate == ""
                             select r.BookId).Count();
-            if (anyRented!=0)
-                return true;
+            if(book.Quantity<anyRented)
+                    return true;
             return false;
         }
         public bool IsUserRenting(User user)
@@ -214,6 +214,8 @@ namespace SmartLibrary.API.Data
                 return true;
             return false;
         }
+
+        
 
     }
 }
