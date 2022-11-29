@@ -70,6 +70,9 @@ namespace SmartLibrary.API.Controllers
             var rental = this.repository.GetRental(id);
             if (rental == null) return BadRequest("Rental has not been found.");
 
+            //if((model.ReturnDate<rental.RentDate) || (model.ReturnRealDate!="" && (model.ReturnRealDate < rental.RentDate))) 
+            //    return BadRequest("Forecast and return date should be later than rental date.");
+
             this.mapper.Map(model, rental);
             this.repository.Update(rental);
             if (this.repository.SaveChanges())
