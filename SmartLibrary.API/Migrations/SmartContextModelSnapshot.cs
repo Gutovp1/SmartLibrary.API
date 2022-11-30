@@ -228,8 +228,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 1,
                             BookId = 2,
-                            RentDate = "2022-11-21",
-                            ReturnDate = "2022-11-21",
+                            RentDate = "2022-11-30",
+                            ReturnDate = "2022-11-30",
                             ReturnRealDate = "",
                             UserId = 2
                         },
@@ -237,8 +237,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 2,
                             BookId = 1,
-                            RentDate = "2022-11-21",
-                            ReturnDate = "2022-11-21",
+                            RentDate = "2022-11-30",
+                            ReturnDate = "2022-11-30",
                             ReturnRealDate = "",
                             UserId = 4
                         },
@@ -246,8 +246,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 3,
                             BookId = 4,
-                            RentDate = "2022-11-21",
-                            ReturnDate = "2022-11-21",
+                            RentDate = "2022-11-30",
+                            ReturnDate = "2022-11-30",
                             ReturnRealDate = "",
                             UserId = 1
                         },
@@ -255,8 +255,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 4,
                             BookId = 1,
-                            RentDate = "2022-11-21",
-                            ReturnDate = "2022-11-21",
+                            RentDate = "2022-11-30",
+                            ReturnDate = "2022-11-30",
                             ReturnRealDate = "",
                             UserId = 1
                         },
@@ -264,8 +264,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 5,
                             BookId = 3,
-                            RentDate = "2022-11-21",
-                            ReturnDate = "2022-11-21",
+                            RentDate = "2022-11-30",
+                            ReturnDate = "2022-11-30",
                             ReturnRealDate = "",
                             UserId = 3
                         },
@@ -273,8 +273,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 6,
                             BookId = 5,
-                            RentDate = "2022-11-21",
-                            ReturnDate = "2022-11-21",
+                            RentDate = "2022-11-30",
+                            ReturnDate = "2022-11-30",
                             ReturnRealDate = "",
                             UserId = 2
                         },
@@ -282,8 +282,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 7,
                             BookId = 5,
-                            RentDate = "2022-11-21",
-                            ReturnDate = "2022-11-21",
+                            RentDate = "2022-11-30",
+                            ReturnDate = "2022-11-30",
                             ReturnRealDate = "",
                             UserId = 4
                         });

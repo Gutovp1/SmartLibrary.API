@@ -4,7 +4,7 @@
 
 namespace SmartLibrary.API.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -195,37 +195,37 @@ namespace SmartLibrary.API.Migrations
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 1, 2, "2022-11-21", "2022-11-21", "", 2 });
+                values: new object[] { 1, 2, "2022-11-30", "2022-11-30", "", 2 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 2, 1, "2022-11-21", "2022-11-21", "", 4 });
+                values: new object[] { 2, 1, "2022-11-30", "2022-11-30", "", 4 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 3, 4, "2022-11-21", "2022-11-21", "", 1 });
+                values: new object[] { 3, 4, "2022-11-30", "2022-11-30", "", 1 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 4, 1, "2022-11-21", "2022-11-21", "", 1 });
+                values: new object[] { 4, 1, "2022-11-30", "2022-11-30", "", 1 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 5, 3, "2022-11-21", "2022-11-21", "", 3 });
+                values: new object[] { 5, 3, "2022-11-30", "2022-11-30", "", 3 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 6, 5, "2022-11-21", "2022-11-21", "", 2 });
+                values: new object[] { 6, 5, "2022-11-30", "2022-11-30", "", 2 });
 
             migrationBuilder.InsertData(
                 table: "Rentals",
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
-                values: new object[] { 7, 5, "2022-11-21", "2022-11-21", "", 4 });
+                values: new object[] { 7, 5, "2022-11-30", "2022-11-30", "", 4 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_PublisherId",

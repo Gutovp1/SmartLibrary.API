@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SmartLibrary.API.Migrations.NetDevPackAppDb
 {
-    public partial class AuthInitial : Migration
+    public partial class AuthInit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

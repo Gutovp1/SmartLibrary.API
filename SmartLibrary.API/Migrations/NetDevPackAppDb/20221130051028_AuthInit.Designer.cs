@@ -11,8 +11,8 @@ using NetDevPack.Identity.Data;
 namespace SmartLibrary.API.Migrations.NetDevPackAppDb
 {
     [DbContext(typeof(NetDevPackAppDbContext))]
-    [Migration("20221123220948_AuthInitial")]
-    partial class AuthInitial
+    [Migration("20221130051028_AuthInit")]
+    partial class AuthInit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

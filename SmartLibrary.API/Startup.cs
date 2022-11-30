@@ -43,7 +43,8 @@ namespace SmartLibrary.API
 
             //////Authentication and Authorization
             services.AddIdentityEntityFrameworkContextConfiguration(options =>
-                options.UseSqlite(Configuration.GetConnectionString("Default")));
+                options.UseSqlite(Configuration.GetConnectionString("Default"), 
+                b=>b.MigrationsAssembly("SmartLibrary.API")));
 
             services.AddJwtConfiguration(Configuration, "AppSettings");
             
