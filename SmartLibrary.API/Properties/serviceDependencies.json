@@ -2,6 +2,11 @@
   "dependencies": {
     "apis1": {
       "type": "apis"
+    },
+    "sqlite1": {
+      "type": "sqlite",
+      "connectionId": "ConnectionStrings:Default",
+      "dynamicId": null
     }
   }
 }

@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "apis1": {
+      "ignored": "true",
+      "type": "apis"
+    },
+    "mssql1": {
+      "ignored": "true",
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:Default",
+      "dynamicId": null
+    },
+    "secrets1": {
+      "ignored": "true",
+      "type": "secrets",
+      "connectionId": "VaultUri"
+    },
+    "sqlite1": {
+      "secretStore": null,
+      "type": "sqlite.local",
+      "connectionId": "ConnectionStrings:Default",
+      "dynamicId": null
+    }
+  }
+}
