@@ -30,7 +30,7 @@ namespace SmartLibrary.API
                 c.AddPolicy("AllowOriginVue", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
-            services.AddDbContext<SmartContext>(context => context.UseSqlite(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<SmartContext>(context => context.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
 
             services.AddScoped<IRepository, Repository>();
 
@@ -43,7 +43,7 @@ namespace SmartLibrary.API
 
             //////Authentication and Authorization
             services.AddIdentityEntityFrameworkContextConfiguration(options =>
-                options.UseSqlite(Configuration.GetConnectionString("Default"), 
+                options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"), 
                 b=>b.MigrationsAssembly("SmartLibrary.API")));
 
             services.AddJwtConfiguration(Configuration, "AppSettings");
@@ -93,11 +93,11 @@ namespace SmartLibrary.API
             app.UseCors("AllowOriginVue");
 
             // Configure the HTTP request pipeline.
-            if (environment.IsDevelopment())
-            {
+            //if (environment.IsDevelopment())
+            //{
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            //}
 
             app.UseAuthConfiguration();
             //app.UseAuthorization();
