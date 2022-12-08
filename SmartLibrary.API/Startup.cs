@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using SmartLibrary.API.Services;
 
 namespace SmartLibrary.API
 {
@@ -98,7 +99,7 @@ namespace SmartLibrary.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             //}
-
+            DataBaseManagementService.MigrationInitialisation(app);
             app.UseAuthConfiguration();
             //app.UseAuthorization();
 

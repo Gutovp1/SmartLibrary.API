@@ -27,7 +27,7 @@ services:
     build:
       context: .
       dockerfile: SmartLibrary.API/Dockerfile
-    container_name: smartlibrary
+    container_name: smartlibrary.api
     networks:
       - mssqlNET
       - smartlibraryNET
