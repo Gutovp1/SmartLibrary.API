@@ -1,0 +1,25 @@
+version: "3.4"
+
+volumes:
+  SmartLibraryDB:
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=guto@paiva22
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - SmartLibraryDB:/var/opt/mssql
+
+  smartlibrary.api:
+    build:
+      context: .
+      dockerfile: .
+    ports:
+      - 5000:80
+    depends_on:
+      - mssql
