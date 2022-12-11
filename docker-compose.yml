@@ -1,43 +1,26 @@
 version: '3.4'
 
 volumes:
-  SmartLibraryDB:
-
-networks:
-  mssqlNET:
-  smartlibraryNET:
+  SmartLibrarySQLDB:
 
 services:
-
-  mssql:
+  dbsql:
     image: mcr.microsoft.com/mssql/server
-    container_name: mssql
     environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: "guto@paiva22"
-      MSSQL_PID: Express
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=guto@paiva22
+      - MSSQL_PID=Express
     ports:
       - "1433:1433"
     volumes:
-      - SmartLibraryDB:/var/opt/mssql 
-    networks:
-      - mssqlNET
+      - SmartLibrarySQLDB:/var/opt/dbsql
 
   smartlibrary.api:
+    image: ${DOCKER_REGISTRY-}smartlibraryapi
     build:
       context: .
       dockerfile: SmartLibrary.API/Dockerfile
-    container_name: smartlibrary.api
-    networks:
-      - mssqlNET
-      - smartlibraryNET
     ports:
       - 5000:80
-    environment:
-      DbServer: "mssql"
-      DbPort: "1433"
-      DbUser: "SA"
-      Password: "guto@paiva22"
-      Database: "SmartLibraryDB"
     depends_on:
-      - mssql
+      - dbsql

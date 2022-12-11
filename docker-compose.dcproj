@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>cdf058c7-de3f-4fb2-b5bc-ff4220325f67</ProjectGuid>
+    <ProjectGuid>8307c04e-144a-46c0-9b24-2890be99b98b</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>smartlibrary.api</DockerServiceName>
