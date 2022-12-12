@@ -12,7 +12,6 @@ namespace SmartLibrary.API.Dtos
         public int Quantity { get; set; }
 
         public int Year { get; set; }
-        public Publisher Publisher { get; set; }
 
 
     }
