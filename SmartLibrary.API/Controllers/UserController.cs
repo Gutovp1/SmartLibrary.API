@@ -44,6 +44,9 @@ namespace SmartLibrary.API.Controllers
 
         public IActionResult Post(User user)
         {
+            var us = this.repository.GetUserEmail(user.Email);
+            if (us != null) return BadRequest("This e-mail is already registered. Try a different email.");
+
             this.repository.Add(user);
             if (this.repository.SaveChanges())
             {
@@ -60,6 +63,9 @@ namespace SmartLibrary.API.Controllers
         {
             var us = this.repository.GetUser(id);
             if (us == null) return BadRequest("User has not been found.");
+
+            us = this.repository.GetUserEmail(user.Email);
+            if (us != null) return BadRequest("This e-mail is already registered. Try a different email.");
 
             this.repository.Update(user);
             if (this.repository.SaveChanges())

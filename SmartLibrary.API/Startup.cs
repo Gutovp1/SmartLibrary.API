@@ -51,11 +51,6 @@ namespace SmartLibrary.API
             
             services.AddIdentityConfiguration();
 
-            ////// Setting the interactive AspNetUser (logged in)
-            //services.AddAspNetUserConfiguration();
-
-
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
@@ -93,15 +88,10 @@ namespace SmartLibrary.API
             //Enable CORS
             app.UseCors("AllowOriginVue");
 
-            // Configure the HTTP request pipeline.
-            //if (environment.IsDevelopment())
-            //{
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            //}
-            DataBaseManagementService.MigrationInitialisation(app);
+            //DataBaseManagementService.MigrationInitialisation(app);
             app.UseAuthConfiguration();
-            //app.UseAuthorization();
 
             app.MapControllers();
         }

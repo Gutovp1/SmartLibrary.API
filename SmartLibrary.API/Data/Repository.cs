@@ -182,7 +182,12 @@ namespace SmartLibrary.API.Data
             query = query.AsNoTracking().OrderBy(u => u.Id).Where(u => u.Id == id);
             return query.FirstOrDefault();
         }
-
+        public User GetUserEmail(string email)
+        {
+            IQueryable<User> query = _context.Users;
+            query = query.AsNoTracking().OrderBy(u => u.Email).Where(u => u.Email == email);
+            return query.FirstOrDefault();
+        }
         public bool IsQuantityInvalid(Book book) 
         {
             IQueryable<Rental> queryr = _context.Rentals;
