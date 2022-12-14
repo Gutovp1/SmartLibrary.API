@@ -56,7 +56,6 @@ namespace SmartLibrary.API.Data
                     new Rental(5,3,3,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
                     new Rental(6,5,2,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
                     new Rental(7,5,4,DateTime.Now.ToString("yyyy-MM-dd"),DateTime.Now.ToString("yyyy-MM-dd")),
-                    //new Rental((int)DateTime.Now.Ticks,5,4,DateTime.Now),
                 });
         }
     }

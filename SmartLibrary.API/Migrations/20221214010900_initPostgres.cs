@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace SmartLibrary.API.Migrations
 {
-    public partial class initSqlServer : Migration
+    public partial class initPostgres : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,10 +13,10 @@ namespace SmartLibrary.API.Migrations
                 name: "Publishers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    City = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,12 +27,12 @@ namespace SmartLibrary.API.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Address = table.Column<string>(type: "text", nullable: false),
+                    City = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,15 +43,15 @@ namespace SmartLibrary.API.Migrations
                 name: "Books",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PublisherId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    QuantityAvailable = table.Column<int>(type: "int", nullable: false),
-                    Year = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Author = table.Column<string>(type: "text", nullable: false),
+                    PublisherId = table.Column<int>(type: "integer", nullable: false),
+                    Quantity = table.Column<int>(type: "integer", nullable: false),
+                    QuantityAvailable = table.Column<int>(type: "integer", nullable: false),
+                    Year = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,13 +73,13 @@ namespace SmartLibrary.API.Migrations
                 name: "Rentals",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    RentDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReturnDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReturnRealDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    BookId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    RentDate = table.Column<string>(type: "text", nullable: false),
+                    ReturnDate = table.Column<string>(type: "text", nullable: false),
+                    ReturnRealDate = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -142,13 +143,13 @@ namespace SmartLibrary.API.Migrations
                 columns: new[] { "Id", "BookId", "RentDate", "ReturnDate", "ReturnRealDate", "UserId" },
                 values: new object[,]
                 {
-                    { 1, 2, "2022-12-06", "2022-12-06", "", 2 },
-                    { 2, 1, "2022-12-06", "2022-12-06", "", 4 },
-                    { 3, 4, "2022-12-06", "2022-12-06", "", 1 },
-                    { 4, 1, "2022-12-06", "2022-12-06", "", 1 },
-                    { 5, 3, "2022-12-06", "2022-12-06", "", 3 },
-                    { 6, 5, "2022-12-06", "2022-12-06", "", 2 },
-                    { 7, 5, "2022-12-06", "2022-12-06", "", 4 }
+                    { 1, 2, "2022-12-13", "2022-12-13", "", 2 },
+                    { 2, 1, "2022-12-13", "2022-12-13", "", 4 },
+                    { 3, 4, "2022-12-13", "2022-12-13", "", 1 },
+                    { 4, 1, "2022-12-13", "2022-12-13", "", 1 },
+                    { 5, 3, "2022-12-13", "2022-12-13", "", 3 },
+                    { 6, 5, "2022-12-13", "2022-12-13", "", 2 },
+                    { 7, 5, "2022-12-13", "2022-12-13", "", 4 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -2,9 +2,9 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SmartLibrary.API.Data;
 
 #nullable disable
@@ -12,48 +12,48 @@ using SmartLibrary.API.Data;
 namespace SmartLibrary.API.Migrations
 {
     [DbContext(typeof(SmartContext))]
-    [Migration("20221206042124_initSqlServer")]
-    partial class initSqlServer
+    [Migration("20221214010900_initPostgres")]
+    partial class initPostgres
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("SmartLibrary.API.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("PublisherId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("QuantityAvailable")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Year")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -160,17 +160,17 @@ namespace SmartLibrary.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -207,26 +207,26 @@ namespace SmartLibrary.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BookId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("RentDate")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ReturnDate")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ReturnRealDate")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -241,8 +241,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 1,
                             BookId = 2,
-                            RentDate = "2022-12-06",
-                            ReturnDate = "2022-12-06",
+                            RentDate = "2022-12-13",
+                            ReturnDate = "2022-12-13",
                             ReturnRealDate = "",
                             UserId = 2
                         },
@@ -250,8 +250,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 2,
                             BookId = 1,
-                            RentDate = "2022-12-06",
-                            ReturnDate = "2022-12-06",
+                            RentDate = "2022-12-13",
+                            ReturnDate = "2022-12-13",
                             ReturnRealDate = "",
                             UserId = 4
                         },
@@ -259,8 +259,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 3,
                             BookId = 4,
-                            RentDate = "2022-12-06",
-                            ReturnDate = "2022-12-06",
+                            RentDate = "2022-12-13",
+                            ReturnDate = "2022-12-13",
                             ReturnRealDate = "",
                             UserId = 1
                         },
@@ -268,8 +268,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 4,
                             BookId = 1,
-                            RentDate = "2022-12-06",
-                            ReturnDate = "2022-12-06",
+                            RentDate = "2022-12-13",
+                            ReturnDate = "2022-12-13",
                             ReturnRealDate = "",
                             UserId = 1
                         },
@@ -277,8 +277,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 5,
                             BookId = 3,
-                            RentDate = "2022-12-06",
-                            ReturnDate = "2022-12-06",
+                            RentDate = "2022-12-13",
+                            ReturnDate = "2022-12-13",
                             ReturnRealDate = "",
                             UserId = 3
                         },
@@ -286,8 +286,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 6,
                             BookId = 5,
-                            RentDate = "2022-12-06",
-                            ReturnDate = "2022-12-06",
+                            RentDate = "2022-12-13",
+                            ReturnDate = "2022-12-13",
                             ReturnRealDate = "",
                             UserId = 2
                         },
@@ -295,8 +295,8 @@ namespace SmartLibrary.API.Migrations
                         {
                             Id = 7,
                             BookId = 5,
-                            RentDate = "2022-12-06",
-                            ReturnDate = "2022-12-06",
+                            RentDate = "2022-12-13",
+                            ReturnDate = "2022-12-13",
                             ReturnRealDate = "",
                             UserId = 4
                         });
@@ -306,25 +306,25 @@ namespace SmartLibrary.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

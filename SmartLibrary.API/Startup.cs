@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using NetDevPack.Identity.Jwt;
 using SmartLibrary.API.Data;
-
 using NetDevPack.Identity.User;
 using NetDevPack.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -31,7 +30,7 @@ namespace SmartLibrary.API
                 c.AddPolicy("AllowOriginVue", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
-            services.AddDbContext<SmartContext>(context => context.UseSqlServer(Configuration.GetConnectionString("SqlConnection")));
+            services.AddDbContext<SmartContext>(context => context.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
 
             services.AddScoped<IRepository, Repository>();
 
@@ -44,7 +43,7 @@ namespace SmartLibrary.API
 
             //////Authentication and Authorization
             services.AddIdentityEntityFrameworkContextConfiguration(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"), 
+                options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection"), 
                 b=>b.MigrationsAssembly("SmartLibrary.API")));
 
             services.AddJwtConfiguration(Configuration, "AppSettings");
@@ -90,7 +89,7 @@ namespace SmartLibrary.API
 
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            DataBaseManagementService.MigrationInitialisation(app);
+            //DataBaseManagementService.MigrationInitialisation(app);
             app.UseAuthConfiguration();
 
             app.MapControllers();
