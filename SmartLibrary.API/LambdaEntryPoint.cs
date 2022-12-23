@@ -2,7 +2,7 @@
 
 namespace SmartLibrary.API
 {
-    public class LambdaEntryPoint : APIGatewayHttpApiV2ProxyFunction
+    public class LambdaEntryPoint : APIGatewayHttpApiV2ProxyFunction 
     {
         protected override void Init(IWebHostBuilder builder)
         {

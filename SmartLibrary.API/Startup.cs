@@ -89,7 +89,7 @@ namespace SmartLibrary.API
 
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            //DataBaseManagementService.MigrationInitialisation(app);
+            DataBaseManagementService.MigrationInitialisation(app);
             app.UseAuthConfiguration();
 
             app.MapControllers();
