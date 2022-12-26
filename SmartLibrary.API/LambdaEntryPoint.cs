@@ -6,7 +6,6 @@ namespace SmartLibrary.API
     {
         protected override void Init(IWebHostBuilder builder)
         {
-            //base.Init(builder);
             builder.UseStartup<Startup>();
         }
     }
